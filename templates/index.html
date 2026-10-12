@@ -1,0 +1,2879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VFSTR Academic Document Formatting &amp; Modifier Agent</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-hover: #1e40af;
+      --accent: #2563eb;
+      --agent: #7c3aed;
+      --agent-hover: #6d28d9;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #3b82f6;
+      --success: #16a34a;
+      --success-hover: #15803d;
+      --gray-panel: #f1f5f9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #0f172a;
+      color: #fff;
+      padding: 1.25rem 2rem;
+      border-bottom: 3px solid #3b82f6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-badge {
+      background: #3b82f6;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn-download-agent {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #475569;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-download-agent:hover {
+      background: #334155;
+      color: #fff;
+      border-color: #64748b;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+    }
+
+    .panel-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .panel-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .dropzone {
+      border: 2px dashed #93c5fd;
+      border-radius: 8px;
+      padding: 2.75rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #f0f7ff;
+    }
+
+    .dropzone:hover, .dropzone.dragover {
+      border-color: var(--accent);
+      background: #e0f2fe;
+    }
+
+    .dropzone-icon {
+      font-size: 3rem;
+      color: #3b82f6;
+      margin-bottom: 0.75rem;
+    }
+
+    .dropzone-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 0.35rem;
+    }
+
+    .dropzone-subtext {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    /* Selected Files Container */
+    .files-container {
+      display: none;
+      margin-top: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .files-header {
+      background: #f1f5f9;
+      padding: 0.65rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .files-list {
+      max-height: 220px;
+      overflow-y: auto;
+      list-style: none;
+    }
+
+    .file-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      transition: background 0.15s;
+    }
+
+    .file-row:last-child {
+      border-bottom: none;
+    }
+
+    .file-row:hover {
+      background: #f8fafc;
+    }
+
+    .file-row-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .file-badge {
+      background: #2563eb;
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .file-row-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .file-row-size {
+      font-size: 0.78rem;
+      color: #64748b;
+    }
+
+    .file-remove-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 0 0.35rem;
+      transition: color 0.15s;
+    }
+
+    .file-remove-btn:hover {
+      color: #b91c1c;
+    }
+
+    .btn-clear-all {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-add-more {
+      background: none;
+      border: 1px dashed #93c5fd;
+      color: #2563eb;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+      padding: 1.25rem;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .checkbox-container {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1e293b;
+      cursor: pointer;
+      user-select: none;
+      background: #eff6ff;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .checkbox-container input {
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-primary:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    .btn-agent {
+      background: var(--agent);
+      color: white;
+    }
+
+    .btn-agent:hover {
+      background: var(--agent-hover);
+    }
+
+    .btn-agent:disabled {
+      background: #c4b5fd;
+      cursor: not-allowed;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn-success:hover {
+      background: var(--success-hover);
+    }
+
+    /* Document Tabs */
+    .doc-tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      background: #f1f5f9;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+
+    .doc-tab {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .doc-tab:hover {
+      background: #e2e8f0;
+    }
+
+    .doc-tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
+    }
+
+    /* AI Modifier Agent Card */
+    .agent-card {
+      margin-top: 2rem;
+      background: #faf5ff;
+      border: 1.5px solid #d8b4fe;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.05);
+    }
+
+    .agent-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .agent-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #581c87;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .agent-status-badge {
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .agent-status-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .agent-target-select {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      background: #f3e8ff;
+      padding: 0.5rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #6b21a8;
+    }
+
+    .agent-target-select select {
+      flex: 1;
+      padding: 0.35rem 0.6rem;
+      border: 1px solid #c084fc;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      outline: none;
+      background: #fff;
+    }
+
+    .agent-input-container {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .agent-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #c084fc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      background: #fff;
+      transition: all 0.2s;
+    }
+
+    .agent-input:focus {
+      border-color: var(--agent);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .chip {
+      background: #f3e8ff;
+      border: 1px solid #e9d5ff;
+      color: #6b21a8;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .chip:hover {
+      background: #d8b4fe;
+      color: #3b0764;
+    }
+
+    .agent-feedback {
+      display: none;
+      background: #fdf4ff;
+      border: 1px solid #f0abfc;
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      color: #701a75;
+      line-height: 1.5;
+      margin-top: 0.75rem;
+    }
+
+    .details-toggle {
+      font-size: 0.82rem;
+      color: #7c3aed;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+      user-select: none;
+    }
+
+    .drawer-fields {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #d8b4fe;
+    }
+
+    .reorder-panel {
+      margin: 1.25rem 0;
+      padding: 1.1rem 1.25rem;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+    }
+
+    .reorder-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .reorder-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #1e293b;
+    }
+
+    .reorder-subtitle {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .reorder-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .reorder-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      padding: 0.6rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      transition: all 0.15s ease;
+    }
+
+    .reorder-item:hover {
+      border-color: #93c5fd;
+      background: #fbfdff;
+    }
+
+    .reorder-item-info {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .reorder-badge {
+      background: #0284c7;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .reorder-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .reorder-pages {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-left: 0.4rem;
+    }
+
+    .reorder-btn-group {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+    }
+
+    .btn-reorder-move {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 0.22rem 0.55rem;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: #334155;
+      transition: all 0.15s;
+    }
+
+    .btn-reorder-move:hover:not(:disabled) {
+      background: #e2e8f0;
+      color: #0f172a;
+      border-color: #94a3b8;
+    }
+
+    .btn-edit-subject {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      border-radius: 4px;
+      padding: 0.28rem 0.65rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s;
+    }
+
+    .btn-edit-subject:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      color: #1e40af;
+    }
+
+    .subject-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 0.65rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 0.85rem;
+      gap: 1rem;
+    }
+
+    .subject-action-info {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .subject-action-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .subject-action-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .subject-action-pages {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* Dedicated Subject Photo & URL Modal */
+    .edit-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .edit-modal-backdrop.active {
+      display: flex;
+    }
+
+    .edit-modal-window {
+      background: #ffffff;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 660px;
+      max-height: 92vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .edit-modal-header {
+      padding: 1.15rem 1.4rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background: #f8fafc;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .edit-modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .edit-modal-subtitle {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 0.2rem;
+    }
+
+    .edit-modal-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: #94a3b8;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .edit-modal-close:hover {
+      color: #0f172a;
+      background: #e2e8f0;
+    }
+
+    .edit-modal-body {
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .edit-modal-footer {
+      padding: 0.9rem 1.4rem;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      background: #f8fafc;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    /* PDF Content & Structure Editor Styles */
+    .content-modal-window {
+      max-width: 860px !important;
+      width: 95%;
+    }
+
+    .editor-tabs-nav {
+      display: flex;
+      gap: 0.25rem;
+      border-bottom: 2px solid #cbd5e1;
+      padding: 0 1.25rem;
+      background: #f8fafc;
+      overflow-x: auto;
+    }
+
+    .editor-tab-btn {
+      padding: 0.65rem 0.95rem;
+      background: none;
+      border: none;
+      border-bottom: 2.5px solid transparent;
+      color: #64748b;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      margin-bottom: -2px;
+    }
+
+    .editor-tab-btn:hover {
+      color: #1e3a8a;
+      background: #f1f5f9;
+    }
+
+    .editor-tab-btn.active {
+      color: #1d4ed8;
+      border-bottom-color: #2563eb;
+      font-weight: 700;
+      background: #eff6ff;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+
+    .editor-tab-pane {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      animation: tabFadeIn 0.15s ease-out;
+    }
+
+    .editor-tab-pane.active {
+      display: flex;
+    }
+
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.75rem;
+      background: #f8fafc;
+      padding: 0.85rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .credits-grid .form-group {
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    .credits-grid label {
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: #334155;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .credits-grid input {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.45rem 0.25rem;
+    }
+
+    /* Interactive Table Editor Styles */
+    .editable-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      background: #ffffff;
+      margin-top: 0.4rem;
+    }
+
+    .editable-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .editable-table th {
+      background: #1e293b;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.65rem 0.6rem;
+      text-align: left;
+      font-size: 0.8rem;
+      border: 1px solid #334155;
+      white-space: nowrap;
+    }
+
+    .editable-table td {
+      padding: 0.45rem 0.5rem;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+      background: #fff;
+    }
+
+    .editable-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .editable-table tr:hover td {
+      background: #f1f5f9;
+    }
+
+    .table-cell-input {
+      width: 100%;
+      padding: 0.4rem 0.5rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      box-sizing: border-box;
+      background: #fff;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .table-cell-input:focus, .table-cell-textarea:focus {
+      border-color: #2563eb;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+      background: #fff;
+    }
+
+    .table-cell-textarea {
+      width: 100%;
+      padding: 0.4rem 0.5rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      box-sizing: border-box;
+      background: #fff;
+      font-family: inherit;
+      resize: vertical;
+      line-height: 1.35;
+      min-height: 54px;
+      transition: all 0.15s;
+    }
+
+    .btn-table-delete {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.82rem;
+      transition: all 0.15s;
+    }
+
+    .btn-table-delete:hover {
+      background: #fca5a5;
+      color: #7f1d1d;
+    }
+
+    .btn-table-add {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1.5px dashed #93c5fd;
+      border-radius: 6px;
+      padding: 0.5rem 0.95rem;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.84rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s;
+    }
+
+    .btn-table-add:hover {
+      background: #dbeafe;
+      border-color: #2563eb;
+    }
+
+    .preview-container {
+      display: none;
+      margin-top: 2rem;
+      border-top: 2px solid var(--border);
+      padding-top: 2rem;
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .preview-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .preview-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .pdf-frame {
+      width: 100%;
+      height: 780px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #525659;
+    }
+
+    .badge-report {
+      margin-bottom: 1rem;
+      padding: 0.85rem 1rem;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #065f46;
+      line-height: 1.5;
+    }
+
+    .spinner {
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-badge">VFSTR</span>
+      <h1>Academic Document Formatting &amp; Modifier Agent</h1>
+    </div>
+    <div class="header-actions">
+      <a href="/download-agent" class="btn-download-agent" title="Download standalone offline agent package">
+        <span>📦</span>
+        <span>Download Standalone Agent (.zip)</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="panel">
+      <h2 class="panel-title">Word-to-PDF Multi-Document Academic Converter</h2>
+      <p class="panel-subtitle">
+        Upload one or multiple Word documents (<code>.docx</code>). The agent formats each document into the VFSTR alternating 2-page curriculum standard (Left sidebar photo on Page 1, Right sidebar <code>SKILLS:</code> on Page 2, strictly aligned margins) with continuous page numbering.
+      </p>
+
+      <form id="uploadForm">
+        <div class="dropzone" id="dropzone">
+          <div class="dropzone-icon">📚</div>
+          <div class="dropzone-text">Click to choose or drag &amp; drop Word documents (.docx) or PDFs (.pdf)</div>
+          <div class="dropzone-subtext">Select single or multiple files &bull; Batch conversion, direct editing &amp; auto-pagination</div>
+          <input type="file" id="fileInput" class="file-input" accept=".docx,.pdf" multiple required>
+        </div>
+
+        <div id="filesContainer" class="files-container">
+          <div class="files-header">
+            <span id="filesCountLabel">Selected Documents (0)</span>
+            <div style="display:flex; gap:0.75rem; align-items:center;">
+              <button type="button" class="btn-add-more" onclick="fileInput.click()">+ Add More Files</button>
+              <button type="button" class="btn-clear-all" id="clearAllBtn">Clear All</button>
+            </div>
+          </div>
+          <ul id="filesList" class="files-list"></ul>
+        </div>
+
+        <div class="options-grid">
+          <label class="checkbox-container">
+            <input type="checkbox" id="continuousPages" name="continuousPages" checked>
+            <span>Continuous Page Numbering Across Documents (e.g., Doc 1: Pages 80-83, Doc 2: Pages 84-85...)</span>
+          </label>
+
+          <div class="form-group">
+            <label for="startPage">Starting Page Number</label>
+            <input type="number" id="startPage" name="startPage" value="80" min="1">
+          </div>
+          <div class="form-group">
+            <label for="headerText">Repeating Header Text</label>
+            <input type="text" id="headerText" name="headerText" value="CSE - II Year II Semester">
+          </div>
+          <div class="form-group">
+            <label for="courseCode">Course Code (Optional Override)</label>
+            <input type="text" id="courseCode" name="courseCode" placeholder="Auto-detected or e.g. 24CS206">
+          </div>
+          <div class="form-group">
+            <label for="unsplashApiKey">Real-World Photo API Key (Unsplash)</label>
+            <input type="password" id="unsplashApiKey" name="unsplashApiKey" placeholder="Optional Unsplash Access Key">
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="convertBtn" class="btn btn-primary" disabled>
+            <span id="btnSpinner" class="spinner"></span>
+            <span id="btnText">Transform Documents to Academic PDFs</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- AI Document Modifier Agent Card -->
+      <div id="modifierCard" class="agent-card" style="display: none;">
+        <div class="agent-header">
+          <div class="agent-title">
+            <span>🤖</span>
+            <span>AI Document Modifier Agent</span>
+          </div>
+          <span class="agent-status-badge">Active &amp; Ready</span>
+        </div>
+
+        <div class="agent-target-select" id="agentTargetWrapper">
+          <span>Active Document:</span>
+          <select id="agentDocxSelect" onchange="onActiveDocxChange()"></select>
+        </div>
+
+        <p class="agent-subtitle">
+          Instruct the Modifier Agent to customize any detail of the active document (course code, starting page, header text, subject photo, skills, or margins), and it will re-compile the PDF instantly.
+        </p>
+
+        <form id="modifyForm">
+          <div class="agent-input-container">
+            <input type="text" id="agentPrompt" class="agent-input" placeholder="E.g., Change course code to 25CS207, set start page to 112, and set photo to Robotics...">
+            <button type="submit" id="modifyBtn" class="btn btn-agent">
+              <span id="modSpinner" class="spinner"></span>
+              <span id="modBtnText">⚡ Modify PDF</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="chips-container">
+          <span class="chip" onclick="applyQuickPrompt('Change course code to 25CS207')">🏷️ Code: 25CS207</span>
+          <span class="chip" onclick="applyQuickPrompt('Set starting page number to 112')">📑 Page 112</span>
+          <span class="chip" onclick="applyQuickPrompt('Set header to CSE - III Year I Semester')">🏛️ III Year I Sem Header</span>
+          <span class="chip" onclick="applyQuickPrompt('Change subject photo to Machine Learning Neural Network')">🖼️ ML Photo</span>
+          <span class="chip" onclick="applyQuickPrompt('Change subject photo to Robotics Computer Vision')">🤖 Robotics Photo</span>
+        </div>
+
+        <div class="details-toggle" id="drawerToggle" onclick="toggleDrawer()">
+          <span id="drawerArrow">▶</span> <span>Fine-Tuning Parameter Controls</span>
+        </div>
+
+        <div class="drawer-fields" id="drawerFields">
+          <div class="form-group">
+            <label for="drawerCode">Course Code</label>
+            <input type="text" id="drawerCode" placeholder="24CS206">
+          </div>
+          <div class="form-group">
+            <label for="drawerPage">Starting Page</label>
+            <input type="number" id="drawerPage" placeholder="80">
+          </div>
+          <div class="form-group">
+            <label for="drawerHeader">Header Text</label>
+            <input type="text" id="drawerHeader" placeholder="CSE - II Year II Semester">
+          </div>
+          <div class="form-group">
+            <label for="drawerQuery">Photo Keyword (Internet Search)</label>
+            <input type="text" id="drawerQuery" placeholder="e.g. Artificial Intelligence">
+          </div>
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label for="drawerImageFile">📁 Select Photo from Folder (Local File Upload):</label>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <input type="file" id="drawerImageFile" accept="image/png, image/jpeg, image/jpg, image/webp" style="flex:1;">
+              <button type="button" class="btn" style="padding:0.4rem 0.8rem; font-size:0.8rem; background:#fee2e2; color:#b91c1c; display:none;" id="btnClearImage" onclick="clearSelectedImage()">✕ Remove</button>
+            </div>
+            <div id="imagePreviewContainer" style="display:none; margin-top:0.5rem; align-items:center; gap:0.75rem; background:#fff; padding:0.45rem 0.75rem; border-radius:6px; border:1px solid #cbd5e1;">
+              <img id="imagePreviewThumb" src="" style="width:48px; height:36px; object-fit:cover; border-radius:4px; border:1px solid #94a3b8;">
+              <span id="imagePreviewText" style="font-size:0.82rem; color:#334155; font-weight:600;"></span>
+            </div>
+          </div>
+
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label for="drawerSourceUrl">🔗 Image Source Citation URL (Link to Display Below Photo in PDF):</label>
+            <input type="text" id="drawerSourceUrl" placeholder="Paste source link (e.g., https://en.wikipedia.org/wiki/Robotics or https://unsplash.com/...)">
+            <small style="color:#64748b; font-size:0.75rem; margin-top:0.25rem; display:block;">
+              This exact pasted URL will be formatted and rendered directly beneath the photo in the Page 1 Left Gray Sidebar.
+            </small>
+          </div>
+
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label for="drawerSkills">Custom Skills List (One per line for Right Sidebar)</label>
+            <textarea id="drawerSkills" rows="3" placeholder="Enter skills (one per line)..."></textarea>
+          </div>
+          <div style="grid-column: 1 / -1; display:flex; justify-content: flex-end;">
+            <button type="button" class="btn btn-agent" onclick="submitDrawerChanges()">Apply Parameter Updates</button>
+          </div>
+        </div>
+
+        <div id="agentFeedback" class="agent-feedback"></div>
+      </div>
+
+      <!-- Preview Container -->
+      <div id="previewContainer" class="preview-container">
+        <div class="preview-header">
+          <h3 class="preview-title">Formatted Academic PDF Output</h3>
+          <div class="preview-actions">
+            <button type="button" class="btn btn-primary" id="btnEditPdfPreview" onclick="openContentEditorForActive()" title="Edit Course Info, Credits, Description, Syllabus, and Skills">
+              <span>📝 Edit PDF</span>
+            </button>
+            <button type="button" class="btn btn-success" id="btnSavePdfDirect" onclick="openContentEditorForActive()" title="Save and Re-compile Modified PDF">
+              <span>💾 Save Modified PDF</span>
+            </button>
+            <a id="downloadCombinedBtn" href="#" class="btn btn-agent" style="display:none;" download>
+              <span>📚 Download Combined Book (.pdf)</span>
+            </a>
+            <a id="downloadBatchZipBtn" href="#" class="btn btn-primary" style="display:none;" download>
+              <span>📦 Download All PDFs (.zip)</span>
+            </a>
+            <a id="downloadPdfBtn" href="#" class="btn btn-success" download>
+              <span>⬇ Download PDF</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Subject Ordering Panel for Final Document -->
+        <div id="reorderPanel" class="reorder-panel" style="display: none;">
+          <div class="reorder-header">
+            <div class="reorder-title">
+              <span>📑</span>
+              <span>Arrange Subjects Sequence in Final Document</span>
+            </div>
+            <button type="button" class="btn btn-agent" id="applyReorderBtn" style="padding:0.45rem 0.95rem; font-size:0.85rem;" onclick="applySubjectReorder()">
+              🔄 Apply Order &amp; Re-compile Combined Book
+            </button>
+          </div>
+          <p class="reorder-subtitle">
+            Arrange subjects according to your preference using ▲ and ▼ buttons. Continuous pagination and fresh page starts will automatically re-align across the entire book.
+          </p>
+          <ul id="reorderList" class="reorder-list"></ul>
+        </div>
+
+        <!-- Document Tabs for Batch Results -->
+        <div id="docTabsBar" class="doc-tabs-bar" style="display: none;"></div>
+
+        <!-- Subject Action & Edit Bar for Active Document -->
+        <div id="subjectActionBar" class="subject-action-bar" style="display: none;">
+          <div class="subject-action-info">
+            <span class="subject-action-label">Active Subject:</span>
+            <span id="activeSubjectName" class="subject-action-name"></span>
+            <span id="activeSubjectPages" class="subject-action-pages"></span>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary" id="btnEditPdfActive" onclick="openContentEditorForActive()" style="padding:0.4rem 0.95rem; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem;" title="Edit PDF Content, Credits, and Specifications">
+              <span>📝</span>
+              <span>Edit PDF</span>
+            </button>
+            <button type="button" class="btn" id="btnEditOutcomesActive" onclick="openOutcomesEditorForActive()" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; padding:0.4rem 0.95rem; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem; font-weight:600;" title="Modify Course Outcomes directly inside the table">
+              <span>📊</span>
+              <span>Edit Outcomes Table</span>
+            </button>
+            <button type="button" class="btn btn-success" id="btnSavePdfActive" onclick="openContentEditorForActive()" style="padding:0.4rem 0.95rem; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem;" title="Save and Re-compile Modified PDF">
+              <span>💾</span>
+              <span>Save Modified PDF</span>
+            </button>
+            <button type="button" class="btn btn-agent" id="btnEditActiveSubject" onclick="openSubjectModalForActive()" style="padding:0.4rem 0.95rem; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem;" title="Quick Edit Photo & Citation URL">
+              <span>🖼️</span>
+              <span>Photo &amp; Citation URL</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="reportSummary" class="badge-report"></div>
+
+        <iframe id="pdfFrame" class="pdf-frame" src=""></iframe>
+      </div>
+    </div>
+  </main>
+
+  <!-- Comprehensive PDF Content & Structure Editor Modal -->
+  <div id="pdfContentEditorModal" class="edit-modal-backdrop">
+    <div class="edit-modal-window content-modal-window">
+      <div class="edit-modal-header">
+        <div>
+          <div class="edit-modal-title">
+            <span>📝</span>
+            <span>Edit PDF Document Content &amp; Save Modified PDF</span>
+          </div>
+          <div class="edit-modal-subtitle">
+            Editing: <strong id="editorModalDocxName"></strong> &bull; Changes will update the PDF and re-compile the Combined Curriculum Book.
+          </div>
+        </div>
+        <button type="button" class="edit-modal-close" onclick="closeContentEditorModal()" title="Close dialog">&times;</button>
+      </div>
+
+      <div class="editor-tabs-nav">
+        <button type="button" class="editor-tab-btn active" id="btnTabCourseInfo" onclick="switchEditorTab('tabCourseInfo')">📘 Course Info &amp; Credits</button>
+        <button type="button" class="editor-tab-btn" id="btnTabDescription" onclick="switchEditorTab('tabDescription')">📋 Prerequisite &amp; Description</button>
+        <button type="button" class="editor-tab-btn" id="btnTabOutcomes" onclick="switchEditorTab('tabOutcomes')">📊 Course Outcomes (Table)</button>
+        <button type="button" class="editor-tab-btn" id="btnTabModules" onclick="switchEditorTab('tabModules')">📑 Modules &amp; Practicals</button>
+        <button type="button" class="editor-tab-btn" id="btnTabSkills" onclick="switchEditorTab('tabSkills')">🎯 Skills &amp; Books</button>
+        <button type="button" class="editor-tab-btn" id="btnTabPhoto" onclick="switchEditorTab('tabPhoto')">🖼️ Photo &amp; Citation URL</button>
+      </div>
+
+      <div class="edit-modal-body">
+        <!-- Tab 1: Course Info & Credits -->
+        <div id="tabCourseInfo" class="editor-tab-pane active">
+          <div style="display:grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+            <div class="form-group">
+              <label for="editorCourseTitle" style="font-weight:700;">Course Title (e.g. DATA STRUCTURES)</label>
+              <input type="text" id="editorCourseTitle" placeholder="Course Title">
+            </div>
+            <div class="form-group">
+              <label for="editorCourseCode" style="font-weight:700;">Course Code (e.g. 24CS206)</label>
+              <input type="text" id="editorCourseCode" placeholder="24CS206">
+            </div>
+          </div>
+
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; margin-bottom:0.4rem; display:block;">Hours Per Week &amp; Credits Allocation (Table 0):</label>
+            <div class="credits-grid">
+              <div class="form-group">
+                <label for="editorHoursL">L (Lecture)</label>
+                <input type="text" id="editorHoursL" placeholder="3">
+              </div>
+              <div class="form-group">
+                <label for="editorHoursT">T (Tutorial)</label>
+                <input type="text" id="editorHoursT" placeholder="0">
+              </div>
+              <div class="form-group">
+                <label for="editorHoursP">P (Practical)</label>
+                <input type="text" id="editorHoursP" placeholder="2">
+              </div>
+              <div class="form-group">
+                <label for="editorHoursSL">SL (Self-Study)</label>
+                <input type="text" id="editorHoursSL" placeholder="0">
+              </div>
+              <div class="form-group">
+                <label for="editorHoursC">C (Credits)</label>
+                <input type="text" id="editorHoursC" placeholder="4">
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 2fr; gap: 0.75rem;">
+            <div class="form-group">
+              <label for="editorStartPage" style="font-weight:700;">Starting Page Number</label>
+              <input type="number" id="editorStartPage" placeholder="80">
+            </div>
+            <div class="form-group">
+              <label for="editorHeaderText" style="font-weight:700;">Repeating Header Text</label>
+              <input type="text" id="editorHeaderText" placeholder="CSE - II Year II Semester">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Prerequisite & Description -->
+        <div id="tabDescription" class="editor-tab-pane">
+          <div class="form-group">
+            <label for="editorPrerequisite" style="font-weight:700;">Prerequisite Knowledge:</label>
+            <input type="text" id="editorPrerequisite" placeholder="e.g. Basic Computer Programming">
+          </div>
+          <div class="form-group">
+            <label for="editorDescription" style="font-weight:700;">Course Description and Objectives:</label>
+            <textarea id="editorDescription" rows="8" placeholder="Enter course description and objectives..."></textarea>
+          </div>
+        </div>
+
+        <!-- Tab 3: Course Outcomes Table (Interactive In-Table Cell Editor) -->
+        <div id="tabOutcomes" class="editor-tab-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; background:#f1f5f9; padding:0.85rem 1rem; border-radius:8px; border:1px solid #cbd5e1;">
+            <div>
+              <div style="font-weight:700; color:#0f172a; font-size:0.95rem; display:flex; align-items:center; gap:0.4rem;">
+                <span>📊</span>
+                <span>Course Outcomes (CO) - Interactive Table Editor</span>
+              </div>
+              <div style="font-size:0.78rem; color:#475569; margin-top:0.15rem;">
+                Modify the information inside the table cells directly. You can edit outcome statements, Bloom's levels, module mappings, and PO mappings, or add and delete rows.
+              </div>
+            </div>
+            <button type="button" class="btn-table-add" onclick="addOutcomeRow()">
+              <span>➕</span> Add Outcome Row
+            </button>
+          </div>
+
+          <div class="editable-table-container">
+            <table class="editable-table" id="outcomesTableElement">
+              <thead>
+                <tr id="outcomesTableHeaderRow">
+                  <th style="width:70px; text-align:center;">CO No.</th>
+                  <th style="min-width:240px;">Course Outcome (Statement)</th>
+                  <th style="width:115px;">Bloom's Level</th>
+                  <th style="width:125px;">Module No.</th>
+                  <th style="width:125px;">Mapping with POs</th>
+                  <th style="width:50px; text-align:center;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="outcomesTableBody">
+                <!-- Dynamically populated rows with table cell inputs -->
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.25rem;">
+            <span id="outcomesRowCountBadge" style="font-size:0.8rem; color:#64748b; font-weight:600;"></span>
+            <button type="button" class="btn-table-add" onclick="addOutcomeRow()" style="font-size:0.82rem; padding:0.4rem 0.85rem;">
+              <span>➕</span> Add Another Outcome
+            </button>
+          </div>
+
+          <!-- Optional SDGs & IKS Table Accordion -->
+          <details style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:0.75rem 1rem; margin-top:0.5rem;" id="sdgsTableDetails">
+            <summary style="font-weight:700; color:#334155; font-size:0.88rem; cursor:pointer;">
+              🌿 Sustainable Development Goals (SDGs) &amp; Indian Knowledge System (IKS) Mapping (Rendered as Badges in PDF)
+            </summary>
+            <div style="margin-top:0.75rem;">
+              <div style="font-size:0.78rem; color:#475569; margin-bottom:0.5rem; background:#f1f5f9; padding:6px 10px; border-radius:4px; border-left:3px solid #3b82f6;">
+                ℹ️ <b>Visual Formatting:</b> In the generated PDF, SDGs and IKS are rendered as official UN SDG icon tiles and the Indian Knowledge System (IKS) logo badge (non-tabular). You can edit the SDG numbers and topics below.
+              </div>
+              <div class="editable-table-container">
+                <table class="editable-table" id="sdgsTableElement">
+                  <thead>
+                    <tr id="sdgsTableHeaderRow">
+                      <th style="width:70px;">Unit</th>
+                      <th style="width:140px;">Topic</th>
+                      <th>Sustainable Development Goals (SDGs)</th>
+                      <th>Indian Knowledge System (IKS)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sdgsTableBody">
+                    <!-- Dynamically populated SDGs rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Tab 3: Modules & Practicals -->
+        <div id="tabModules" class="editor-tab-pane">
+          <div class="form-group">
+            <label for="editorModulesContent" style="font-weight:700;">Modules / Units &amp; Practical Syllabus Content:</label>
+            <textarea id="editorModulesContent" rows="12" placeholder="Course syllabus content (MODULE 1, MODULE 2, PRACTICES, etc.)..."></textarea>
+            <small style="color:#64748b; font-size:0.75rem;">Modules and laboratory experiment contents from the curriculum document.</small>
+          </div>
+        </div>
+
+        <!-- Tab 4: Skills & Books -->
+        <div id="tabSkills" class="editor-tab-pane">
+          <div class="form-group">
+            <label for="editorSkills" style="font-weight:700; color:#1e40af;">
+              🎯 SKILLS: (Right Gray Sidebar on Page 2):
+            </label>
+            <textarea id="editorSkills" rows="5" placeholder="Enter skills list (one skill per line). Each will be rendered with ✓ in the right sidebar..."></textarea>
+            <small style="color:#64748b; font-size:0.75rem;">Each non-empty line appears with a checkmark (✓) in the Page 2 Right Gray Sidebar.</small>
+          </div>
+          <div class="form-group">
+            <label for="editorTextbooks" style="font-weight:700;">Textbooks:</label>
+            <textarea id="editorTextbooks" rows="3" placeholder="List of textbooks..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editorReferences" style="font-weight:700;">Reference Books:</label>
+            <textarea id="editorReferences" rows="3" placeholder="List of reference books..."></textarea>
+          </div>
+        </div>
+
+        <!-- Tab 5: Photo & Citation URL -->
+        <div id="tabPhoto" class="editor-tab-pane">
+          <div class="form-group">
+            <label for="editorPhotoFileInput" style="font-weight:700;">📁 Upload Photo from Device / Local Folder:</label>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <input type="file" id="editorPhotoFileInput" accept="image/png, image/jpeg, image/jpg, image/webp" style="flex:1;">
+              <button type="button" class="btn" id="editorBtnClearImg" style="display:none; background:#fee2e2; color:#b91c1c; padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="clearEditorPhoto()">✕ Remove</button>
+            </div>
+            <div id="editorImgPreviewBox" style="display:none; margin-top:0.5rem; align-items:center; gap:0.75rem; background:#f8fafc; padding:0.5rem 0.85rem; border-radius:6px; border:1px solid #cbd5e1;">
+              <img id="editorImgThumb" src="" style="width:54px; height:42px; object-fit:cover; border-radius:4px; border:1px solid #94a3b8;">
+              <span id="editorImgFileName" style="font-size:0.85rem; font-weight:600; color:#0f172a;"></span>
+            </div>
+            <small style="color:#64748b; font-size:0.78rem;">Upload an image from your computer to display on the Page 1 Left Gray Sidebar.</small>
+          </div>
+          <div class="form-group">
+            <label for="editorCustomImageUrl" style="font-weight:700;">🌐 Or Direct Image Web URL:</label>
+            <input type="url" id="editorCustomImageUrl" placeholder="https://example.com/subject-photo.jpg">
+          </div>
+          <div class="form-group">
+            <label for="editorImageQuery" style="font-weight:700;">🔍 Or Subject Photo Keyword (Internet Search):</label>
+            <input type="text" id="editorImageQuery" placeholder="e.g. Data Structures, Cloud Computing, Operating Systems">
+          </div>
+          <div class="form-group" style="background:#fdf4ff; padding:0.85rem 1rem; border-radius:8px; border:1px solid #f0abfc;">
+            <label for="editorCustomSourceUrl" style="font-weight:700; color:#701a75;">🔗 Photo Source Citation URL (Rendered below Photo on Page 1 Left Sidebar):</label>
+            <input type="text" id="editorCustomSourceUrl" placeholder="https://en.wikipedia.org/... or https://unsplash.com/...">
+            <small style="color:#86198f; font-size:0.75rem; display:block; margin-top:0.25rem;">
+              This exact pasted URL will be displayed in the Page 1 Left Gray Sidebar directly beneath the subject photo with clean wrapping.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="edit-modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeContentEditorModal()">Cancel</button>
+        <button type="button" class="btn btn-success" id="btnSavePdfContentModal" onclick="savePdfContentFromModal()" style="font-weight:700; font-size:0.95rem; padding:0.6rem 1.4rem;">
+          <span id="editorSaveSpinner" class="spinner" style="display:none;"></span>
+          <span id="editorSaveBtnText">💾 Save Modified PDF</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Subject Photo & Details Editor Modal -->
+  <div id="subjectEditModal" class="edit-modal-backdrop">
+    <div class="edit-modal-window">
+      <div class="edit-modal-header">
+        <div>
+          <div class="edit-modal-title">
+            <span>🖼️</span>
+            <span>Edit Subject Photo &amp; Citation URL</span>
+          </div>
+          <div class="edit-modal-subtitle">
+            Configure image and citation for: <strong id="modalSubjectDocxName"></strong>
+          </div>
+        </div>
+        <button type="button" class="edit-modal-close" onclick="closeSubjectModal()" title="Close dialog">&times;</button>
+      </div>
+
+      <div class="edit-modal-body">
+        <!-- Subject Target Badge & Page Info -->
+        <div style="background:#f1f5f9; padding:0.75rem 1rem; border-radius:6px; border:1px solid #cbd5e1; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:0.75rem; color:#64748b; font-weight:700; text-transform:uppercase;">Selected Subject</div>
+            <div id="modalSubjectTitleText" style="font-size:0.95rem; font-weight:700; color:#0f172a;"></div>
+          </div>
+          <div id="modalSubjectPagesBadge" class="file-badge" style="background:#0284c7; font-size:0.8rem;"></div>
+        </div>
+
+        <!-- Photo Option 1: Upload from Device -->
+        <div class="form-group">
+          <label for="modalImageFileInput" style="font-size:0.9rem; font-weight:700; color:#1e293b;">
+            📁 Upload Photo from Device / Computer:
+          </label>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <input type="file" id="modalImageFileInput" accept="image/png, image/jpeg, image/jpg, image/webp" style="flex:1;">
+            <button type="button" class="btn" id="modalBtnClearImg" style="display:none; background:#fee2e2; color:#b91c1c; padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="clearModalImage()">✕ Remove</button>
+          </div>
+          <div id="modalImgPreviewBox" style="display:none; margin-top:0.6rem; align-items:center; gap:0.75rem; background:#f8fafc; padding:0.5rem 0.85rem; border-radius:6px; border:1px solid #cbd5e1;">
+            <img id="modalImgThumb" src="" style="width:54px; height:42px; object-fit:cover; border-radius:4px; border:1px solid #94a3b8;">
+            <div>
+              <div id="modalImgFileName" style="font-size:0.85rem; font-weight:600; color:#0f172a;"></div>
+              <div style="font-size:0.75rem; color:#16a34a; font-weight:600;">✓ Ready to insert on Page 1 Left Gray Sidebar</div>
+            </div>
+          </div>
+          <small style="color:#64748b; font-size:0.78rem; display:block; margin-top:0.35rem;">
+            Select any image file from your device (.png, .jpg, .webp). It will be formatted and placed in the Left Sidebar.
+          </small>
+        </div>
+
+        <!-- Photo Option 2: Image Web URL -->
+        <div class="form-group">
+          <label for="modalImageUrlInput" style="font-size:0.9rem; font-weight:700; color:#1e293b;">
+            🌐 Or Paste Direct Image URL (Web):
+          </label>
+          <input type="url" id="modalImageUrlInput" placeholder="https://example.com/robotics.jpg">
+          <small style="color:#64748b; font-size:0.78rem; display:block; margin-top:0.25rem;">
+            If you have a direct photo link from the web, paste it here to download and insert into this subject.
+          </small>
+        </div>
+
+        <!-- Photo Option 3: Keyword Search -->
+        <div class="form-group">
+          <label for="modalImageQueryInput" style="font-size:0.9rem; font-weight:700; color:#1e293b;">
+            🔍 Or Photo Topic / Keyword (Internet Search):
+          </label>
+          <input type="text" id="modalImageQueryInput" placeholder="e.g. Artificial Intelligence, Machine Learning, Robotics">
+        </div>
+
+        <!-- Photo Source Citation URL Section -->
+        <div class="form-group" style="background:#fdf4ff; padding:0.85rem 1rem; border-radius:8px; border:1px solid #f0abfc;">
+          <label for="modalSourceUrlInput" style="font-size:0.9rem; font-weight:700; color:#701a75;">
+            🔗 Photo Source Citation URL (Rendered Directly Below Photo in PDF):
+          </label>
+          <input type="text" id="modalSourceUrlInput" placeholder="Paste citation link (e.g. https://en.wikipedia.org/... or https://unsplash.com/...)">
+          <small style="color:#86198f; font-size:0.78rem; display:block; margin-top:0.35rem;">
+            This exact pasted URL will be printed directly beneath the photo in the Page 1 Left Gray Sidebar with clean line wrapping.
+          </small>
+        </div>
+
+        <!-- Additional Subject Parameters Accordion -->
+        <details style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.6rem 0.9rem;">
+          <summary style="font-size:0.85rem; font-weight:600; color:#475569; cursor:pointer;">
+            ⚙️ Additional Subject Specifications (Course Code, Starting Page, Header)
+          </summary>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:0.75rem;">
+            <div>
+              <label for="modalCourseCode" style="font-size:0.78rem;">Course Code</label>
+              <input type="text" id="modalCourseCode" placeholder="24CS206">
+            </div>
+            <div>
+              <label for="modalStartPage" style="font-size:0.78rem;">Starting Page</label>
+              <input type="number" id="modalStartPage" placeholder="80">
+            </div>
+            <div style="grid-column:1 / -1;">
+              <label for="modalHeaderText" style="font-size:0.78rem;">Header Text</label>
+              <input type="text" id="modalHeaderText" placeholder="CSE - II Year II Semester">
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="edit-modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeSubjectModal()">Cancel</button>
+        <button type="button" class="btn btn-agent" id="btnSaveSubjectModal" onclick="saveSubjectFromModal()">
+          <span id="modalSaveSpinner" class="spinner" style="display:none;"></span>
+          <span id="modalSaveBtnText">💾 Save &amp; Update Subject PDF</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>VFSTR Academic Document Formatting Agent &bull; CSE II Year II Semester Standard</div>
+    <div>Running locally on <code>http://localhost:8000</code></div>
+  </footer>
+
+  <script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const filesContainer = document.getElementById('filesContainer');
+    const filesList = document.getElementById('filesList');
+    const filesCountLabel = document.getElementById('filesCountLabel');
+    const clearAllBtn = document.getElementById('clearAllBtn');
+    const convertBtn = document.getElementById('convertBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const btnText = document.getElementById('btnText');
+    const uploadForm = document.getElementById('uploadForm');
+
+    const modifierCard = document.getElementById('modifierCard');
+    const agentDocxSelect = document.getElementById('agentDocxSelect');
+    const modifyForm = document.getElementById('modifyForm');
+    const agentPrompt = document.getElementById('agentPrompt');
+    const modifyBtn = document.getElementById('modifyBtn');
+    const modSpinner = document.getElementById('modSpinner');
+    const modBtnText = document.getElementById('modBtnText');
+    const agentFeedback = document.getElementById('agentFeedback');
+
+    const previewContainer = document.getElementById('previewContainer');
+    const docTabsBar = document.getElementById('docTabsBar');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+    const downloadBatchZipBtn = document.getElementById('downloadBatchZipBtn');
+    const downloadCombinedBtn = document.getElementById('downloadCombinedBtn');
+    const reportSummary = document.getElementById('reportSummary');
+
+    let selectedFiles = [];
+    let convertedDocs = [];
+    let activeDocIndex = 0;
+    let combinedPdfUrl = null;
+    let combinedDownloadUrl = null;
+    let isViewingCombined = false;
+
+    dropzone.addEventListener('click', () => fileInput.click());
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('dragover');
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      if (e.dataTransfer.files.length > 0) {
+        addFiles(Array.from(e.dataTransfer.files));
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        addFiles(Array.from(fileInput.files));
+      }
+    });
+
+    function addFiles(files) {
+      const valid = files.filter(f => f.name.toLowerCase().endsWith('.docx'));
+      if (valid.length === 0) {
+        alert('Please select valid Microsoft Word (.docx) documents.');
+        return;
+      }
+      for (const file of valid) {
+        // Prevent duplicate files by name
+        if (!selectedFiles.some(f => f.name === file.name)) {
+          selectedFiles.push(file);
+        }
+      }
+      renderFilesList();
+    }
+
+    const drawerImageFile = document.getElementById('drawerImageFile');
+    const btnClearImage = document.getElementById('btnClearImage');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    const imagePreviewThumb = document.getElementById('imagePreviewThumb');
+    const imagePreviewText = document.getElementById('imagePreviewText');
+    const drawerSourceUrl = document.getElementById('drawerSourceUrl');
+    const reorderPanel = document.getElementById('reorderPanel');
+    const reorderList = document.getElementById('reorderList');
+    const applyReorderBtn = document.getElementById('applyReorderBtn');
+
+    function removeFile(index) {
+      selectedFiles.splice(index, 1);
+      renderFilesList();
+    }
+
+    function moveSelectedFile(idx, dir) {
+      const newIdx = idx + dir;
+      if (newIdx < 0 || newIdx >= selectedFiles.length) return;
+      const temp = selectedFiles[idx];
+      selectedFiles[idx] = selectedFiles[newIdx];
+      selectedFiles[newIdx] = temp;
+      renderFilesList();
+    }
+
+    clearAllBtn.addEventListener('click', () => {
+      selectedFiles = [];
+      fileInput.value = '';
+      renderFilesList();
+    });
+
+    function renderFilesList() {
+      filesList.innerHTML = '';
+      if (selectedFiles.length === 0) {
+        filesContainer.style.display = 'none';
+        convertBtn.disabled = true;
+        btnText.textContent = 'Transform Documents to Academic PDFs';
+        return;
+      }
+
+      filesContainer.style.display = 'block';
+      filesCountLabel.textContent = `Selected Documents (${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''})`;
+      convertBtn.disabled = false;
+      btnText.textContent = selectedFiles.length > 1
+        ? `Transform ${selectedFiles.length} Documents to Academic PDFs`
+        : `Transform Document to Academic PDF`;
+
+      selectedFiles.forEach((file, idx) => {
+        const li = document.createElement('li');
+        li.className = 'file-row';
+        li.innerHTML = `
+          <div class="file-row-info">
+            <span class="file-badge">DOCX</span>
+            <div>
+              <div class="file-row-name">${escapeHtml(file.name)}</div>
+              <div class="file-row-size">${(file.size / 1024).toFixed(1)} KB</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <button type="button" class="btn-reorder-move" onclick="moveSelectedFile(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Move Up in Order">▲</button>
+            <button type="button" class="btn-reorder-move" onclick="moveSelectedFile(${idx}, 1)" ${idx === selectedFiles.length - 1 ? 'disabled' : ''} title="Move Down in Order">▼</button>
+            <button type="button" class="file-remove-btn" onclick="removeFile(${idx})" title="Remove this file">&times;</button>
+          </div>
+        `;
+        filesList.appendChild(li);
+      });
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, function(m) {
+        return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'}[m];
+      });
+    }
+
+    // Local image selection & preview in modifier drawer
+    if (drawerImageFile) {
+      drawerImageFile.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            imagePreviewThumb.src = evt.target.result;
+            imagePreviewText.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+            imagePreviewContainer.style.display = 'flex';
+            btnClearImage.style.display = 'inline-block';
+          };
+          reader.readAsDataURL(file);
+        } else {
+          clearSelectedImage();
+        }
+      });
+    }
+
+    function clearSelectedImage() {
+      if (drawerImageFile) drawerImageFile.value = '';
+      if (imagePreviewThumb) imagePreviewThumb.src = '';
+      if (imagePreviewText) imagePreviewText.textContent = '';
+      if (imagePreviewContainer) imagePreviewContainer.style.display = 'none';
+      if (btnClearImage) btnClearImage.style.display = 'none';
+    }
+
+    uploadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (selectedFiles.length === 0) return;
+
+      convertBtn.disabled = true;
+      btnSpinner.style.display = 'inline-block';
+      btnText.textContent = `Formatting ${selectedFiles.length} Document${selectedFiles.length > 1 ? 's' : ''}...`;
+
+      const formData = new FormData();
+      for (const file of selectedFiles) {
+        formData.append('files', file);
+      }
+      formData.append('start_page', document.getElementById('startPage').value);
+      formData.append('continuous_pages', document.getElementById('continuousPages').checked ? 'true' : 'false');
+      formData.append('header_text', document.getElementById('headerText').value);
+      formData.append('course_code', document.getElementById('courseCode').value);
+      formData.append('unsplash_api_key', document.getElementById('unsplashApiKey').value);
+
+      try {
+        const response = await fetch('/convert', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          convertedDocs = data.documents;
+          activeDocIndex = 0;
+          isViewingCombined = false;
+          combinedPdfUrl = data.combined_pdf_url || null;
+          combinedDownloadUrl = data.combined_download_url || null;
+
+          // Render summary
+          let summaryHtml = `<strong>Batch Status:</strong> Successfully formatted <strong>${data.total_files}</strong> document${data.total_files > 1 ? 's' : ''} to VFSTR academic standard.<br/>`;
+          data.documents.forEach((d, idx) => {
+            summaryHtml += `• <strong>${escapeHtml(d.docx_name)}</strong>: Pages ${d.start_page}–${d.end_page} (${d.page_count} pages) &bull; Starts fresh on Page ${d.start_page}<br/>`;
+          });
+          if (combinedPdfUrl) {
+            summaryHtml += `📚 <strong>Combined Curriculum Book:</strong> All ${data.total_files} subjects sequentially compiled into a single book where each subject starts on a fresh page.<br/>`;
+          }
+          reportSummary.innerHTML = summaryHtml;
+
+          // Combined Book download button
+          if (combinedPdfUrl) {
+            downloadCombinedBtn.href = combinedDownloadUrl;
+            downloadCombinedBtn.style.display = 'inline-flex';
+          } else {
+            downloadCombinedBtn.style.display = 'none';
+          }
+
+          // Show batch zip button if multiple files
+          if (data.batch_zip_url) {
+            downloadBatchZipBtn.href = data.batch_zip_url;
+            downloadBatchZipBtn.style.display = 'inline-flex';
+          } else {
+            downloadBatchZipBtn.style.display = 'none';
+          }
+
+          // Render Batch Tabs
+          renderDocTabs();
+
+          // Render Subject Re-ordering Controls
+          renderReorderList();
+
+          // Render Modifier Doc Selector
+          renderModifierSelect();
+
+          // Select first document by default
+          selectDocument(0);
+
+          previewContainer.style.display = 'block';
+          modifierCard.style.display = 'block';
+          previewContainer.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert('Error formatting documents: ' + (data.error || 'Unknown error'));
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Failed to connect to the server. Please ensure the agent is running.');
+      } finally {
+        convertBtn.disabled = false;
+        btnSpinner.style.display = 'none';
+        btnText.textContent = selectedFiles.length > 1
+          ? `Transform ${selectedFiles.length} Documents to Academic PDFs`
+          : `Transform Document to Academic PDF`;
+      }
+    });
+
+    function renderDocTabs() {
+      if (convertedDocs.length <= 1) {
+        docTabsBar.style.display = 'none';
+        return;
+      }
+      docTabsBar.style.display = 'flex';
+      docTabsBar.innerHTML = '';
+
+      // Combined Book Tab
+      if (combinedPdfUrl) {
+        const bookBtn = document.createElement('button');
+        bookBtn.type = 'button';
+        bookBtn.className = `doc-tab ${isViewingCombined ? 'active' : ''}`;
+        bookBtn.dataset.combined = 'true';
+        bookBtn.style.fontWeight = '700';
+        bookBtn.innerHTML = `📚 Complete Combined Book <small style="opacity:0.85;">(${convertedDocs.length} Subjects)</small>`;
+        bookBtn.onclick = () => selectCombinedBook();
+        docTabsBar.appendChild(bookBtn);
+      }
+
+      // Individual Document Tabs
+      convertedDocs.forEach((d, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `doc-tab ${(!isViewingCombined && idx === activeDocIndex) ? 'active' : ''}`;
+        btn.innerHTML = `📄 ${d.docx_name.replace('.docx', '')} <small style="opacity:0.8;">(p. ${d.start_page}–${d.end_page})</small>`;
+        btn.onclick = () => selectDocument(idx);
+        docTabsBar.appendChild(btn);
+      });
+    }
+
+    // Modal elements for per-subject editing
+    const subjectEditModal = document.getElementById('subjectEditModal');
+    const modalSubjectDocxName = document.getElementById('modalSubjectDocxName');
+    const modalSubjectTitleText = document.getElementById('modalSubjectTitleText');
+    const modalSubjectPagesBadge = document.getElementById('modalSubjectPagesBadge');
+    const modalImageFileInput = document.getElementById('modalImageFileInput');
+    const modalBtnClearImg = document.getElementById('modalBtnClearImg');
+    const modalImgPreviewBox = document.getElementById('modalImgPreviewBox');
+    const modalImgThumb = document.getElementById('modalImgThumb');
+    const modalImgFileName = document.getElementById('modalImgFileName');
+    const modalImageUrlInput = document.getElementById('modalImageUrlInput');
+    const modalImageQueryInput = document.getElementById('modalImageQueryInput');
+    const modalSourceUrlInput = document.getElementById('modalSourceUrlInput');
+    const modalCourseCode = document.getElementById('modalCourseCode');
+    const modalStartPage = document.getElementById('modalStartPage');
+    const modalHeaderText = document.getElementById('modalHeaderText');
+    const btnSaveSubjectModal = document.getElementById('btnSaveSubjectModal');
+    const modalSaveSpinner = document.getElementById('modalSaveSpinner');
+    const modalSaveBtnText = document.getElementById('modalSaveBtnText');
+
+    const subjectActionBar = document.getElementById('subjectActionBar');
+    const activeSubjectName = document.getElementById('activeSubjectName');
+    const activeSubjectPages = document.getElementById('activeSubjectPages');
+    const btnEditActiveSubject = document.getElementById('btnEditActiveSubject');
+
+    let currentModalDocx = null;
+
+    function renderReorderList() {
+      if (!reorderPanel || !reorderList) return;
+      if (convertedDocs.length <= 1) {
+        reorderPanel.style.display = 'none';
+        return;
+      }
+      reorderPanel.style.display = 'block';
+      reorderList.innerHTML = '';
+
+      convertedDocs.forEach((d, idx) => {
+        const li = document.createElement('li');
+        li.className = 'reorder-item';
+        li.innerHTML = `
+          <div class="reorder-item-info">
+            <span class="reorder-badge">POS ${idx + 1}</span>
+            <span class="reorder-name">${escapeHtml(d.docx_name)}</span>
+            <span class="reorder-pages">(Pages ${d.start_page}–${d.end_page}, ${d.page_count} pgs)</span>
+          </div>
+          <div class="reorder-btn-group">
+            <button type="button" class="btn-edit-subject" onclick="openContentEditorByName('${escapeHtml(d.docx_name)}')" title="Edit PDF Content, Credits, and Specifications" style="background:#eff6ff; color:#1d4ed8; border-color:#93c5fd;">📝 Edit PDF</button>
+            <button type="button" class="btn-edit-subject" onclick="openSubjectModalByName('${escapeHtml(d.docx_name)}')" title="Edit Photo &amp; Citation URL for this Subject">🖼️ Photo &amp; URL</button>
+            <button type="button" class="btn-reorder-move" onclick="moveConvertedDoc(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Move Earlier in Curriculum Book">▲ Up</button>
+            <button type="button" class="btn-reorder-move" onclick="moveConvertedDoc(${idx}, 1)" ${idx === convertedDocs.length - 1 ? 'disabled' : ''} title="Move Later in Curriculum Book">▼ Down</button>
+          </div>
+        `;
+        reorderList.appendChild(li);
+      });
+    }
+
+    function moveConvertedDoc(idx, dir) {
+      const newIdx = idx + dir;
+      if (newIdx < 0 || newIdx >= convertedDocs.length) return;
+      const temp = convertedDocs[idx];
+      convertedDocs[idx] = convertedDocs[newIdx];
+      convertedDocs[newIdx] = temp;
+      renderReorderList();
+    }
+
+    async function applySubjectReorder() {
+      if (!applyReorderBtn) return;
+      applyReorderBtn.disabled = true;
+      const originalText = applyReorderBtn.innerHTML;
+      applyReorderBtn.innerHTML = '⏳ Re-ordering &amp; Re-compiling...';
+
+      const order = convertedDocs.map(d => d.docx_name);
+
+      try {
+        const response = await fetch('/reorder-batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ order: order })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          convertedDocs = data.documents;
+          activeDocIndex = 0;
+          combinedPdfUrl = data.combined_pdf_url || null;
+          combinedDownloadUrl = data.combined_download_url || null;
+
+          // Update summary
+          let summaryHtml = `<strong>Re-order Status:</strong> Successfully re-ordered subjects and continuously re-paginated across the entire curriculum book.<br/>`;
+          data.documents.forEach((d) => {
+            summaryHtml += `• <strong>${escapeHtml(d.docx_name)}</strong>: Pages ${d.start_page}–${d.end_page} (${d.page_count} pages) &bull; Starts fresh on Page ${d.start_page}<br/>`;
+          });
+          if (combinedPdfUrl) {
+            summaryHtml += `📚 <strong>Combined Curriculum Book:</strong> Updated with new subject sequence.<br/>`;
+          }
+          reportSummary.innerHTML = summaryHtml;
+
+          if (combinedPdfUrl) {
+            downloadCombinedBtn.href = combinedDownloadUrl;
+            downloadCombinedBtn.style.display = 'inline-flex';
+          }
+          if (data.batch_zip_url) {
+            downloadBatchZipBtn.href = data.batch_zip_url;
+            downloadBatchZipBtn.style.display = 'inline-flex';
+          }
+
+          renderReorderList();
+          renderDocTabs();
+          renderModifierSelect();
+          selectCombinedBook();
+        } else {
+          alert('Re-order error: ' + (data.error || 'Failed to reorder subjects'));
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Failed to connect to the server while re-ordering.');
+      } finally {
+        applyReorderBtn.disabled = false;
+        applyReorderBtn.innerHTML = originalText;
+      }
+    }
+
+    function selectCombinedBook() {
+      if (!combinedPdfUrl) return;
+      isViewingCombined = true;
+      pdfFrame.src = combinedPdfUrl + '?t=' + Date.now();
+      downloadPdfBtn.href = combinedDownloadUrl;
+      downloadPdfBtn.textContent = '⬇ Download Complete Combined Book (.pdf)';
+
+      const tabs = docTabsBar.querySelectorAll('.doc-tab');
+      tabs.forEach((t) => {
+        if (t.dataset.combined === 'true') t.classList.add('active');
+        else t.classList.remove('active');
+      });
+
+      if (subjectActionBar) {
+        subjectActionBar.style.display = 'flex';
+        activeSubjectName.textContent = 'All Subjects (Complete Combined Book)';
+        activeSubjectPages.textContent = `(${convertedDocs.length} Subjects Combined)`;
+        btnEditActiveSubject.innerHTML = '<span>🖼️</span><span>Edit Photo &amp; URL for Any Subject</span>';
+      }
+    }
+
+    function renderModifierSelect() {
+      agentDocxSelect.innerHTML = '';
+      convertedDocs.forEach((d, idx) => {
+        const opt = document.createElement('option');
+        opt.value = d.docx_name;
+        opt.textContent = `${d.docx_name} (Pages ${d.start_page}–${d.end_page})`;
+        if (idx === activeDocIndex) opt.selected = true;
+        agentDocxSelect.appendChild(opt);
+      });
+    }
+
+    function onActiveDocxChange() {
+      const selectedName = agentDocxSelect.value;
+      const idx = convertedDocs.findIndex(d => d.docx_name === selectedName);
+      if (idx !== -1) {
+        selectDocument(idx);
+      }
+    }
+
+    function selectDocument(idx) {
+      isViewingCombined = false;
+      activeDocIndex = idx;
+      const doc = convertedDocs[idx];
+      pdfFrame.src = doc.pdf_url + '?t=' + Date.now();
+      downloadPdfBtn.href = doc.download_url;
+      downloadPdfBtn.textContent = `⬇ Download ${doc.pdf_filename}`;
+
+      // Update active tabs
+      const tabs = docTabsBar.querySelectorAll('.doc-tab');
+      tabs.forEach((t) => {
+        t.classList.remove('active');
+      });
+      const docTabs = Array.from(tabs).filter(t => !t.dataset.combined);
+      if (docTabs[idx]) docTabs[idx].classList.add('active');
+
+      // Update modifier selector
+      agentDocxSelect.value = doc.docx_name;
+
+      // Update Subject Action Bar
+      if (subjectActionBar) {
+        subjectActionBar.style.display = 'flex';
+        activeSubjectName.textContent = doc.docx_name;
+        activeSubjectPages.textContent = `(Pages ${doc.start_page}–${doc.end_page}, ${doc.page_count} pgs)`;
+        btnEditActiveSubject.innerHTML = '<span>🖼️</span><span>Edit Photo &amp; Citation URL</span>';
+      }
+
+      // Populate fine tuning drawer with this doc's settings
+      if (doc.active_settings) {
+        document.getElementById('drawerCode').value = doc.active_settings.course_code || '';
+        document.getElementById('drawerPage').value = doc.active_settings.start_page || '';
+        document.getElementById('drawerHeader').value = doc.active_settings.header_text || '';
+        document.getElementById('drawerQuery').value = doc.active_settings.subject_image_query || '';
+        if (drawerSourceUrl) {
+          drawerSourceUrl.value = doc.active_settings.custom_source_url || '';
+        }
+        if (doc.active_settings.skills) {
+          document.getElementById('drawerSkills').value = doc.active_settings.skills.join('\n');
+        }
+      }
+      clearSelectedImage();
+    }
+
+    // PDF Document Content Editor DOM Elements
+    const pdfContentEditorModal = document.getElementById('pdfContentEditorModal');
+    const editorModalDocxName = document.getElementById('editorModalDocxName');
+    const editorCourseTitle = document.getElementById('editorCourseTitle');
+    const editorCourseCode = document.getElementById('editorCourseCode');
+    const editorHoursL = document.getElementById('editorHoursL');
+    const editorHoursT = document.getElementById('editorHoursT');
+    const editorHoursP = document.getElementById('editorHoursP');
+    const editorHoursSL = document.getElementById('editorHoursSL');
+    const editorHoursC = document.getElementById('editorHoursC');
+    const editorStartPage = document.getElementById('editorStartPage');
+    const editorHeaderText = document.getElementById('editorHeaderText');
+    const editorPrerequisite = document.getElementById('editorPrerequisite');
+    const editorDescription = document.getElementById('editorDescription');
+    const editorModulesContent = document.getElementById('editorModulesContent');
+    const editorSkills = document.getElementById('editorSkills');
+    const editorTextbooks = document.getElementById('editorTextbooks');
+    const editorReferences = document.getElementById('editorReferences');
+    const editorPhotoFileInput = document.getElementById('editorPhotoFileInput');
+    const editorBtnClearImg = document.getElementById('editorBtnClearImg');
+    const editorImgPreviewBox = document.getElementById('editorImgPreviewBox');
+    const editorImgThumb = document.getElementById('editorImgThumb');
+    const editorImgFileName = document.getElementById('editorImgFileName');
+    const editorCustomImageUrl = document.getElementById('editorCustomImageUrl');
+    const editorImageQuery = document.getElementById('editorImageQuery');
+    const editorCustomSourceUrl = document.getElementById('editorCustomSourceUrl');
+    const btnSavePdfContentModal = document.getElementById('btnSavePdfContentModal');
+    const editorSaveSpinner = document.getElementById('editorSaveSpinner');
+    const editorSaveBtnText = document.getElementById('editorSaveBtnText');
+
+    let currentContentEditorDocx = null;
+
+    function switchEditorTab(tabId) {
+      const tabPanes = document.querySelectorAll('.editor-tab-pane');
+      tabPanes.forEach(p => p.classList.remove('active'));
+      const activePane = document.getElementById(tabId);
+      if (activePane) activePane.classList.add('active');
+
+      const tabBtns = document.querySelectorAll('.editor-tab-btn');
+      tabBtns.forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById('btn' + tabId.charAt(0).toUpperCase() + tabId.slice(1));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    let currentOutcomesHeaders = ['CO No.', 'Course Outcome', "Bloom's Level", 'Module No.', 'Mapping with POs'];
+    let currentSdgsHeaders = ['Unit', 'Topic', 'Sustainable Development Goals (SDGs)', 'Indian Knowledge System (IKS)'];
+
+    function openOutcomesEditorForActive() {
+      if (convertedDocs.length === 0) return;
+      const doc = isViewingCombined ? convertedDocs[0] : (convertedDocs[activeDocIndex] || convertedDocs[0]);
+      openContentEditorByName(doc.docx_name);
+      setTimeout(() => switchEditorTab('tabOutcomes'), 120);
+    }
+
+    function renderOutcomesTable(tableData) {
+      const tbody = document.getElementById('outcomesTableBody');
+      const theadRow = document.getElementById('outcomesTableHeaderRow');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+      if (tableData && tableData.length >= 1) {
+        currentOutcomesHeaders = tableData[0].slice(0, 5);
+        if (theadRow) {
+          theadRow.innerHTML = `
+            <th style="width:75px; text-align:center;">${escapeHtml(currentOutcomesHeaders[0] || 'CO No.')}</th>
+            <th style="min-width:240px;">${escapeHtml(currentOutcomesHeaders[1] || 'Course Outcome')}</th>
+            <th style="width:115px;">${escapeHtml(currentOutcomesHeaders[2] || "Bloom's Level")}</th>
+            <th style="width:125px;">${escapeHtml(currentOutcomesHeaders[3] || 'Module No.')}</th>
+            <th style="width:125px;">${escapeHtml(currentOutcomesHeaders[4] || 'Mapping with POs')}</th>
+            <th style="width:50px; text-align:center;">Action</th>
+          `;
+        }
+
+        for (let r = 1; r < tableData.length; r++) {
+          const rowVals = tableData[r];
+          addOutcomeRow(
+            rowVals[0] || '',
+            rowVals[1] || '',
+            rowVals[2] || '',
+            rowVals[3] || '',
+            rowVals[4] || ''
+          );
+        }
+      } else {
+        for (let i = 1; i <= 5; i++) {
+          addOutcomeRow(`CO${i}`, '', 'Apply', `Module ${i}`, `PO1, PO2, PO3`);
+        }
+      }
+      updateOutcomesCountBadge();
+    }
+
+    function addOutcomeRow(coNum = '', statement = '', blooms = '', moduleNo = '', mapping = '') {
+      const tbody = document.getElementById('outcomesTableBody');
+      if (!tbody) return;
+
+      const currentCount = tbody.querySelectorAll('tr').length;
+      const defNum = coNum || ('CO' + (currentCount + 1));
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="text-align:center;">
+          <input type="text" class="table-cell-input co-cell-num" value="${escapeHtml(defNum)}" style="text-align:center; font-weight:700;">
+        </td>
+        <td>
+          <textarea class="table-cell-textarea co-cell-desc" rows="2" placeholder="Upon successful completion, students will be able to...">${escapeHtml(statement)}</textarea>
+        </td>
+        <td>
+          <input type="text" class="table-cell-input co-cell-blooms" value="${escapeHtml(blooms)}" placeholder="e.g. Apply, Create">
+        </td>
+        <td>
+          <input type="text" class="table-cell-input co-cell-module" value="${escapeHtml(moduleNo)}" placeholder="e.g. Module 1 Unit 1">
+        </td>
+        <td>
+          <input type="text" class="table-cell-input co-cell-mapping" value="${escapeHtml(mapping)}" placeholder="e.g. PO1, PO2, PO3">
+        </td>
+        <td style="text-align:center;">
+          <button type="button" class="btn-table-delete" onclick="removeOutcomeRow(this)" title="Delete this Outcome Row">✕</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+      updateOutcomesCountBadge();
+    }
+
+    function removeOutcomeRow(btn) {
+      const row = btn.closest('tr');
+      if (row) {
+        row.remove();
+        updateOutcomesCountBadge();
+      }
+    }
+
+    function updateOutcomesCountBadge() {
+      const tbody = document.getElementById('outcomesTableBody');
+      const badge = document.getElementById('outcomesRowCountBadge');
+      if (tbody && badge) {
+        const count = tbody.querySelectorAll('tr').length;
+        badge.textContent = `Total Course Outcomes: ${count} row${count !== 1 ? 's' : ''}`;
+      }
+    }
+
+    function collectOutcomesTableData() {
+      const tbody = document.getElementById('outcomesTableBody');
+      if (!tbody) return null;
+
+      const rows = [];
+      rows.push(currentOutcomesHeaders);
+
+      const trs = tbody.querySelectorAll('tr');
+      trs.forEach(tr => {
+        const num = tr.querySelector('.co-cell-num') ? tr.querySelector('.co-cell-num').value.trim() : '';
+        const desc = tr.querySelector('.co-cell-desc') ? tr.querySelector('.co-cell-desc').value.trim() : '';
+        const blooms = tr.querySelector('.co-cell-blooms') ? tr.querySelector('.co-cell-blooms').value.trim() : '';
+        const moduleNo = tr.querySelector('.co-cell-module') ? tr.querySelector('.co-cell-module').value.trim() : '';
+        const mapping = tr.querySelector('.co-cell-mapping') ? tr.querySelector('.co-cell-mapping').value.trim() : '';
+        if (num || desc || blooms || moduleNo || mapping) {
+          rows.push([num, desc, blooms, moduleNo, mapping]);
+        }
+      });
+
+      return JSON.stringify(rows);
+    }
+
+    function renderSdgsTable(sdgsData) {
+      const tbody = document.getElementById('sdgsTableBody');
+      const theadRow = document.getElementById('sdgsTableHeaderRow');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      if (sdgsData && sdgsData.length >= 2) {
+        currentSdgsHeaders = sdgsData[0].slice(0, 4);
+        if (theadRow) {
+          theadRow.innerHTML = `
+            <th style="width:75px;">${escapeHtml(currentSdgsHeaders[0] || 'Unit')}</th>
+            <th style="width:140px;">${escapeHtml(currentSdgsHeaders[1] || 'Topic')}</th>
+            <th>${escapeHtml(currentSdgsHeaders[2] || 'SDGs')}</th>
+            <th>${escapeHtml(currentSdgsHeaders[3] || 'IKS')}</th>
+          `;
+        }
+
+        for (let r = 1; r < sdgsData.length; r++) {
+          const rowVals = sdgsData[r];
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><input type="text" class="table-cell-input sdg-cell-unit" value="${escapeHtml(rowVals[0] || '')}"></td>
+            <td><input type="text" class="table-cell-input sdg-cell-topic" value="${escapeHtml(rowVals[1] || '')}"></td>
+            <td><textarea class="table-cell-textarea sdg-cell-sdg" rows="2">${escapeHtml(rowVals[2] || '')}</textarea></td>
+            <td><textarea class="table-cell-textarea sdg-cell-iks" rows="2">${escapeHtml(rowVals[3] || '')}</textarea></td>
+          `;
+          tbody.appendChild(tr);
+        }
+      }
+    }
+
+    function collectSdgsTableData() {
+      const tbody = document.getElementById('sdgsTableBody');
+      if (!tbody) return null;
+
+      const trs = tbody.querySelectorAll('tr');
+      if (trs.length === 0) return null;
+
+      const rows = [currentSdgsHeaders];
+      trs.forEach(tr => {
+        const unit = tr.querySelector('.sdg-cell-unit') ? tr.querySelector('.sdg-cell-unit').value.trim() : '';
+        const topic = tr.querySelector('.sdg-cell-topic') ? tr.querySelector('.sdg-cell-topic').value.trim() : '';
+        const sdg = tr.querySelector('.sdg-cell-sdg') ? tr.querySelector('.sdg-cell-sdg').value.trim() : '';
+        const iks = tr.querySelector('.sdg-cell-iks') ? tr.querySelector('.sdg-cell-iks').value.trim() : '';
+        rows.push([unit, topic, sdg, iks]);
+      });
+
+      return JSON.stringify(rows);
+    }
+
+    function openContentEditorForActive() {
+      if (convertedDocs.length === 0) return;
+      const doc = isViewingCombined ? convertedDocs[0] : (convertedDocs[activeDocIndex] || convertedDocs[0]);
+      openContentEditorByName(doc.docx_name);
+    }
+
+    async function openContentEditorByName(name) {
+      const doc = convertedDocs.find(d => d.docx_name === name) || convertedDocs[activeDocIndex] || convertedDocs[0];
+      if (!doc) return;
+
+      currentContentEditorDocx = doc.docx_name;
+      editorModalDocxName.textContent = doc.docx_name;
+
+      clearEditorPhoto();
+      switchEditorTab('tabCourseInfo');
+
+      try {
+        const resp = await fetch(`/get-document-content?docx_name=${encodeURIComponent(doc.docx_name)}`);
+        const data = await resp.json();
+        if (resp.ok && data.success) {
+          editorCourseTitle.value = data.course_title || '';
+          editorCourseCode.value = data.course_code || '';
+          editorHoursL.value = (data.hours && data.hours.L) || '3';
+          editorHoursT.value = (data.hours && data.hours.T) || '0';
+          editorHoursP.value = (data.hours && data.hours.P) || '2';
+          editorHoursSL.value = (data.hours && data.hours.SL) || '0';
+          editorHoursC.value = (data.hours && data.hours.C) || '4';
+          editorStartPage.value = data.start_page || doc.start_page || 80;
+          editorHeaderText.value = data.header_text || 'CSE - II Year II Semester';
+          editorPrerequisite.value = data.prerequisite || '';
+          editorDescription.value = data.description || '';
+          editorModulesContent.value = data.modules_content || '';
+          editorSkills.value = (data.skills && Array.isArray(data.skills)) ? data.skills.join('\n') : '';
+          editorTextbooks.value = data.textbooks || '';
+          editorReferences.value = data.references || '';
+          editorCustomSourceUrl.value = data.custom_source_url || '';
+          editorCustomImageUrl.value = data.custom_image_url || '';
+          editorImageQuery.value = data.subject_image_query || '';
+
+          // Render Course Outcomes Table and SDGs Table inside the interactive table editors
+          renderOutcomesTable(data.course_outcomes_table);
+          renderSdgsTable(data.sdgs_table);
+        }
+      } catch (e) {
+        console.warn('Could not load existing document content:', e);
+      }
+
+      pdfContentEditorModal.classList.add('active');
+    }
+
+    function closeContentEditorModal() {
+      if (pdfContentEditorModal) pdfContentEditorModal.classList.remove('active');
+      clearEditorPhoto();
+    }
+
+    function clearEditorPhoto() {
+      if (editorPhotoFileInput) editorPhotoFileInput.value = '';
+      if (editorImgThumb) editorImgThumb.src = '';
+      if (editorImgFileName) editorImgFileName.textContent = '';
+      if (editorImgPreviewBox) editorImgPreviewBox.style.display = 'none';
+      if (editorBtnClearImg) editorBtnClearImg.style.display = 'none';
+    }
+
+    if (editorPhotoFileInput) {
+      editorPhotoFileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            editorImgThumb.src = evt.target.result;
+            editorImgFileName.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+            editorImgPreviewBox.style.display = 'flex';
+            editorBtnClearImg.style.display = 'inline-block';
+          };
+          reader.readAsDataURL(file);
+        } else {
+          clearEditorPhoto();
+        }
+      });
+    }
+
+    async function savePdfContentFromModal() {
+      if (!currentContentEditorDocx) return;
+      btnSavePdfContentModal.disabled = true;
+      editorSaveSpinner.style.display = 'inline-block';
+      editorSaveBtnText.textContent = 'Saving & Re-compiling PDF...';
+
+      const formData = new FormData();
+      formData.append('docx_name', currentContentEditorDocx);
+      formData.append('course_title', editorCourseTitle.value.trim());
+      formData.append('course_code', editorCourseCode.value.trim());
+      formData.append('hours_l', editorHoursL.value.trim());
+      formData.append('hours_t', editorHoursT.value.trim());
+      formData.append('hours_p', editorHoursP.value.trim());
+      formData.append('hours_sl', editorHoursSL.value.trim());
+      formData.append('hours_c', editorHoursC.value.trim());
+      formData.append('start_page', editorStartPage.value.trim());
+      formData.append('header_text', editorHeaderText.value.trim());
+      formData.append('prerequisite', editorPrerequisite.value.trim());
+      formData.append('description', editorDescription.value.trim());
+      formData.append('modules_content', editorModulesContent.value.trim());
+      formData.append('skills', editorSkills.value.trim());
+      formData.append('textbooks', editorTextbooks.value.trim());
+      formData.append('references', editorReferences.value.trim());
+      formData.append('custom_source_url', editorCustomSourceUrl.value.trim());
+      formData.append('custom_image_url', editorCustomImageUrl.value.trim());
+      formData.append('subject_image_query', editorImageQuery.value.trim());
+
+      const coTableJson = collectOutcomesTableData();
+      if (coTableJson) {
+        formData.append('course_outcomes_table', coTableJson);
+      }
+
+      const sdgsTableJson = collectSdgsTableData();
+      if (sdgsTableJson) {
+        formData.append('sdgs_table', sdgsTableJson);
+      }
+
+      if (editorPhotoFileInput.files && editorPhotoFileInput.files[0]) {
+        formData.append('image_file', editorPhotoFileInput.files[0]);
+      }
+
+      try {
+        const response = await fetch('/save-pdf-content', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          const idx = convertedDocs.findIndex(d => d.docx_name === currentContentEditorDocx);
+          if (idx !== -1) {
+            convertedDocs[idx].pdf_url = data.pdf_url;
+            convertedDocs[idx].download_url = data.download_url;
+            if (data.active_settings) {
+              convertedDocs[idx].active_settings = data.active_settings;
+            }
+          }
+
+          if (data.combined_pdf_url) {
+            combinedPdfUrl = data.combined_pdf_url;
+            combinedDownloadUrl = data.combined_download_url;
+            downloadCombinedBtn.href = data.combined_download_url;
+          }
+
+          closeContentEditorModal();
+
+          if (idx !== -1) {
+            selectDocument(idx);
+          }
+
+          renderDocTabs();
+          renderReorderList();
+          renderModifierSelect();
+
+          downloadPdfBtn.textContent = `⬇ Download Modified PDF`;
+
+          agentFeedback.innerHTML = `<strong>✅ Modified PDF Successfully Saved:</strong> Content, syllabus, credits, and layout updates for <strong>${escapeHtml(currentContentEditorDocx)}</strong> have been saved and re-compiled into the PDF!`;
+          agentFeedback.style.display = 'block';
+          agentFeedback.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert('Error saving modified PDF: ' + (data.error || 'Unknown error'));
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Server error while saving modified PDF. Please ensure server is running.');
+      } finally {
+        btnSavePdfContentModal.disabled = false;
+        editorSaveSpinner.style.display = 'none';
+        editorSaveBtnText.textContent = '💾 Save Modified PDF';
+      }
+    }
+
+    // Modal Control Functions for Per-Subject Editing
+    function openSubjectModalByName(name) {
+      const doc = convertedDocs.find(d => d.docx_name === name) || convertedDocs[activeDocIndex] || convertedDocs[0];
+      if (!doc) return;
+
+      currentModalDocx = doc.docx_name;
+      modalSubjectDocxName.textContent = doc.docx_name;
+      modalSubjectTitleText.textContent = doc.docx_name;
+      modalSubjectPagesBadge.textContent = `Pages ${doc.start_page}–${doc.end_page} (${doc.page_count} pgs)`;
+
+      const s = doc.active_settings || {};
+      modalSourceUrlInput.value = s.custom_source_url || '';
+      modalImageUrlInput.value = s.custom_image_url || '';
+      modalImageQueryInput.value = s.subject_image_query || '';
+      modalCourseCode.value = s.course_code || '';
+      modalStartPage.value = doc.start_page || '';
+      modalHeaderText.value = s.header_text || '';
+
+      clearModalImage();
+      subjectEditModal.classList.add('active');
+    }
+
+    function openSubjectModalForActive() {
+      if (convertedDocs.length === 0) return;
+      const doc = isViewingCombined ? convertedDocs[0] : (convertedDocs[activeDocIndex] || convertedDocs[0]);
+      openSubjectModalByName(doc.docx_name);
+    }
+
+    function closeSubjectModal() {
+      if (subjectEditModal) subjectEditModal.classList.remove('active');
+      clearModalImage();
+    }
+
+    function clearModalImage() {
+      if (modalImageFileInput) modalImageFileInput.value = '';
+      if (modalImgThumb) modalImgThumb.src = '';
+      if (modalImgFileName) modalImgFileName.textContent = '';
+      if (modalImgPreviewBox) modalImgPreviewBox.style.display = 'none';
+      if (modalBtnClearImg) modalBtnClearImg.style.display = 'none';
+    }
+
+    if (modalImageFileInput) {
+      modalImageFileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            modalImgThumb.src = evt.target.result;
+            modalImgFileName.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+            modalImgPreviewBox.style.display = 'flex';
+            modalBtnClearImg.style.display = 'inline-block';
+          };
+          reader.readAsDataURL(file);
+        } else {
+          clearModalImage();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (pdfContentEditorModal && pdfContentEditorModal.classList.contains('active')) {
+          closeContentEditorModal();
+        } else if (subjectEditModal && subjectEditModal.classList.contains('active')) {
+          closeSubjectModal();
+        }
+      }
+    });
+
+    if (pdfContentEditorModal) {
+      pdfContentEditorModal.addEventListener('click', (e) => {
+        if (e.target === pdfContentEditorModal) closeContentEditorModal();
+      });
+    }
+
+    if (subjectEditModal) {
+      subjectEditModal.addEventListener('click', (e) => {
+        if (e.target === subjectEditModal) closeSubjectModal();
+      });
+    }
+
+    async function saveSubjectFromModal() {
+      if (!currentModalDocx) return;
+      btnSaveSubjectModal.disabled = true;
+      modalSaveSpinner.style.display = 'inline-block';
+      modalSaveBtnText.textContent = 'Modifying Subject PDF...';
+
+      const formData = new FormData();
+      formData.append('docx_name', currentModalDocx);
+      formData.append('instruction', 'Update subject photo, citation URL, and specifications');
+
+      if (modalImageFileInput.files && modalImageFileInput.files[0]) {
+        formData.append('image_file', modalImageFileInput.files[0]);
+      }
+
+      const srcUrl = modalSourceUrlInput.value.trim();
+      if (srcUrl) formData.append('custom_source_url', srcUrl);
+
+      const imgUrl = modalImageUrlInput.value.trim();
+      if (imgUrl) formData.append('custom_image_url', imgUrl);
+
+      const imgQuery = modalImageQueryInput.value.trim();
+      if (imgQuery) formData.append('image_query', imgQuery);
+
+      const cCode = modalCourseCode.value.trim();
+      if (cCode) formData.append('course_code', cCode);
+
+      const sPage = modalStartPage.value.trim();
+      if (sPage) formData.append('start_page', sPage);
+
+      const hText = modalHeaderText.value.trim();
+      if (hText) formData.append('header_text', hText);
+
+      try {
+        const response = await fetch('/modify', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          const idx = convertedDocs.findIndex(d => d.docx_name === currentModalDocx);
+          if (idx !== -1) {
+            convertedDocs[idx].pdf_url = data.pdf_url;
+            convertedDocs[idx].download_url = data.download_url;
+            if (data.active_settings) {
+              convertedDocs[idx].active_settings = data.active_settings;
+            }
+          }
+
+          if (data.combined_pdf_url) {
+            combinedPdfUrl = data.combined_pdf_url;
+            combinedDownloadUrl = data.combined_download_url;
+            downloadCombinedBtn.href = data.combined_download_url;
+          }
+
+          closeSubjectModal();
+
+          // Select and view the updated document
+          if (idx !== -1) {
+            selectDocument(idx);
+          }
+
+          renderDocTabs();
+          renderReorderList();
+          renderModifierSelect();
+
+          agentFeedback.innerHTML = `<strong>✅ Subject Photo &amp; URL Updated:</strong> Successfully installed new photo and citation URL for <strong>${escapeHtml(currentModalDocx)}</strong> into the PDF!`;
+          agentFeedback.style.display = 'block';
+          agentFeedback.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert('Error updating subject: ' + (data.error || 'Unknown error'));
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Server error while saving subject updates.');
+      } finally {
+        btnSaveSubjectModal.disabled = false;
+        modalSaveSpinner.style.display = 'none';
+        modalSaveBtnText.textContent = '💾 Save & Update Subject PDF';
+      }
+    }
+
+    // AI Modifier Agent interaction
+    modifyForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const prompt = agentPrompt.value.trim();
+      if (!prompt) return;
+      await runModifier(prompt);
+    });
+
+    function applyQuickPrompt(text) {
+      agentPrompt.value = text;
+      runModifier(text);
+    }
+
+    async function runModifier(instruction, overrides = {}, imageFile = null) {
+      const activeDoc = convertedDocs[activeDocIndex];
+      if (!activeDoc) return;
+
+      modifyBtn.disabled = true;
+      modSpinner.style.display = 'inline-block';
+      modBtnText.textContent = 'Agent Modifying PDF...';
+      agentFeedback.style.display = 'none';
+
+      const formData = new FormData();
+      formData.append('docx_name', activeDoc.docx_name);
+      formData.append('instruction', instruction || '');
+
+      if (imageFile) {
+        formData.append('image_file', imageFile);
+      }
+
+      for (const [key, val] of Object.entries(overrides)) {
+        if (val !== undefined && val !== null) {
+          formData.append(key, val);
+        }
+      }
+
+      try {
+        const response = await fetch('/modify', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          agentFeedback.innerHTML = `<strong>🤖 Agent Action on [${activeDoc.docx_name}]:</strong> ${data.message}`;
+          agentFeedback.style.display = 'block';
+
+          // Update active doc in state
+          activeDoc.pdf_url = data.pdf_url;
+          activeDoc.download_url = data.download_url;
+          if (data.active_settings) {
+            activeDoc.active_settings = data.active_settings;
+            document.getElementById('drawerCode').value = data.active_settings.course_code || '';
+            document.getElementById('drawerPage').value = data.active_settings.start_page || '';
+            document.getElementById('drawerHeader').value = data.active_settings.header_text || '';
+            document.getElementById('drawerQuery').value = data.active_settings.subject_image_query || '';
+            if (drawerSourceUrl && data.active_settings.custom_source_url !== undefined) {
+              drawerSourceUrl.value = data.active_settings.custom_source_url || '';
+            }
+            if (data.active_settings.skills) {
+              document.getElementById('drawerSkills').value = data.active_settings.skills.join('\n');
+            }
+          }
+
+          clearSelectedImage();
+
+          if (data.combined_pdf_url) {
+            combinedPdfUrl = data.combined_pdf_url;
+            combinedDownloadUrl = data.combined_download_url;
+            downloadCombinedBtn.href = data.combined_download_url;
+          }
+
+          if (isViewingCombined && combinedPdfUrl) {
+            pdfFrame.src = combinedPdfUrl + '?t=' + Date.now();
+          } else {
+            pdfFrame.src = data.pdf_url + '?t=' + Date.now();
+            downloadPdfBtn.href = data.download_url;
+          }
+          renderReorderList();
+          renderDocTabs();
+          previewContainer.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert('Modifier Agent Error: ' + (data.error || 'Unknown error'));
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Modifier Agent request failed. Ensure server is running.');
+      } finally {
+        modifyBtn.disabled = false;
+        modSpinner.style.display = 'none';
+        modBtnText.textContent = '⚡ Modify PDF';
+      }
+    }
+
+    function toggleDrawer() {
+      const drawer = document.getElementById('drawerFields');
+      const arrow = document.getElementById('drawerArrow');
+      if (drawer.style.display === 'grid') {
+        drawer.style.display = 'none';
+        arrow.textContent = '▶';
+      } else {
+        drawer.style.display = 'grid';
+        arrow.textContent = '▼';
+      }
+    }
+
+    function submitDrawerChanges() {
+      const overrides = {
+        course_code: document.getElementById('drawerCode').value,
+        start_page: document.getElementById('drawerPage').value,
+        header_text: document.getElementById('drawerHeader').value,
+        image_query: document.getElementById('drawerQuery').value,
+        custom_source_url: document.getElementById('drawerSourceUrl').value,
+        skills: document.getElementById('drawerSkills').value
+      };
+      const imgFile = drawerImageFile && drawerImageFile.files && drawerImageFile.files[0] ? drawerImageFile.files[0] : null;
+      runModifier("Apply direct field updates", overrides, imgFile);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1235 @@
+
+=================== PAGE 1 ===================
+VFSTR 
+80
+CSE - II Year II Semester
+Hours Per Week :
+L
+T
+P
+SL
+C
+2
+2
+0
+2
+3
+PREREQUISITE KNOWLEDGE: Digital Logic Design.
+COURSE DESCRIPTION AND OBJECTIVES:
+This course covers the basics of modern Computer Organization and Microprocessor. The emphasis 
+is on understanding the design of computer and its components. The student will learn the concepts 
+of data representation, micro-operations, memory and input output organizations. It also deals with 
+the basic architecture, various addressing modes, pin deﬁ nitions, interfacing of 8086 with memory and 
+peripheral devices.
+MODULE-1
+UNIT-1 
+6L+6T+0P+6SL=18 Hours
+INTRODUCTION, RTL, DATA REPRESENTATION & COMPUTER ARITHMETIC 
+Introduction, Register Transfer language, Register Transfer, Bus and Memory Transfers, Data 
+Representation- Fixed Point Representation, Floating Point Representation. 
+Computer Arithmetic: Fixed-point arithmetic operations such as Addition and Subtraction, Multiplication 
+Algorithms, and Division Algorithms. 
+UNIT-2 
+6L+6T+0P+6SL=18 Hours
+MICRO OPERATIONS & BASIC COMPUTER ORGANIZATION AND DESIGN  
+Micro operations: Arithmetic, Logic, Shift Micro Operations, Arithmetic Logic Shift Unit.
+Basic Computer Organization and Design: Computer Register, Computer Instructions, Memory 
+Reference Instructions. Register Reference Instructions, Input Output Reference Instructions, Interrupt 
+and Instruction Cycle.
+PRACTICES: 
+ 
+●
+Design a Common bus system for eight registers with eight bits each using multiplexers.
+ 
+●
+Design a Common bus system for four registers with four bits each using three state gate buﬀ ers.
+ 
+●
+A digital computer has a common bus system for 16 registers of 32 bits each. The bus is 
+constructed with multiplexers. 
+ 
+●
+How many selection inputs are there in each multiplexer? What size of the multiplexers are 
+needed? How many multiplexers are there in the bus?
+ 
+●
+Perform arithmetic operations (+42) + (-13) and (-42) – (-13) in binary using signed 2’s 
+complement representation for negative numbers.
+ 
+●
+Find the product using the Booth Multiplication Algorithm.
+ 
+a. (9) x (13)        b. (9) x (-13)    c. (-9) x (13)     d. (-9) x (-13)
+ 
+●
+Perform the division of 27 and 4 using the Division algorithm.
+ 
+●
+Design a 4-bit combinational circuit decrementer using 4 full adder circuits.
+ 
+●
+Register A holds the 8-bit binary 11011001.  Determine the B operand and the logic micro-
+operation to be performed to change the value in A to:
+ 
+a) 01101101                                      b) 11111101
+MODULE-2
+UNIT-1 
+6L+6T+0P+6SL=18 Hours
+MEMORY AND INPUT-OUTPUT ORGANIZATION
+Memory Organization: Memory Hierarchy, Main Memory and its interfacing, Auxiliary Memory, 
+Associative Memory, Cache Memory. 
+Input-Output Organization: Peripheral Devices, Input-Output Interface, Asynchronous Data Transfer, 
+Modes of Transfer, Priority Interrupts. Direct Memory Access (DMA).
+Source: https://
+machinelearningmedium.
+com/assets/images/
+computer-architecture.jpg
+25CS206 COMPUTER ORGANIZATION AND 
+ARCHITECTURE
+
+Images on Page 1: 1
+  xref: 5, smask: 0, w: 541, h: 413, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 2 ===================
+VFSTR 
+81
+CSE - II Year II Semester
+UNIT-2 
+6L+6T+0P+6SL=18 Hours
+8086 MICROPROCESSOR
+8086 microprocessor Architecture, Register model, Memory segmentation, Physical address generation, 
+Addressing modes, Instruction set, Interrupts of 8086. Pin conﬁ guration of 8086.
+UNIT-3 
+6L+6T+0P+6SL=18 Hours
+MEMORY AND I/O INTERFACING TO 8086
+8086 Interfacing with static RAM and ROM chips, Address decoding techniques, 8255 PPI, Programmable 
+Communication Interface (8251 USART), Programmable interrupt controller (8259). 
+PRACTICES: 
+ 
+●
+Programs on diﬀ erent Data Transfer Instructions using 8086.
+ 
+●
+Arithmetic operations: Addition, Subtraction, Multiplication, Division using 8086.
+ 
+●
+Programs to analyze diﬀ erent addressing modes of 8086.
+ 
+●
+Program to sort the array of given numbers in ascending order.
+ 
+●
+Interfacing of 8086 with RAM and ROM.
+ 
+●
+Interfacing of 8086 with various IO devices using 8255 PPI.
+ 
+●
+Interfacing of 8086 with 8251 USART.
+COURSE OUTCOMES: 
+Upon successful completion of this course, students will have the ability to:
+CO 
+No.
+Course Outcomes
+Blooms 
+Level
+Mapping 
+with POs
+1
+Analyze the computer organization and system 
+bus.
+Analyze
+1,2,3,9,10
+2
+Design diﬀ erent digital circuits required to perform 
+the micro operations.
+Apply
+1,2,3,9,10
+3
+Design interface circuits for memory and periph-
+eral, DMA, and communication devices. Compare 
+various modes of transfer.
+Analyze
+1,2,3,4,5, 6,7, 9,10,
+4
+Analyze the architecture of the 8086 microproces-
+sor and its addressing modes.
+Analyze
+1,2,3,4,5, 6,7, 9,10,
+5
+Analyze various interfaces for the 8086 micro-
+processor.
+Analyze
+1,2,3,4,5, 6, 7, 9,10
+MAPPING OF SUSTAINABLE DEVELOPMENT GOALS (SDGS): 
+TEXT BOOK:
+1. M. Morris Mano, “Computer System Architecture”, 3rd Edition update, Pearson, 2017.
+2. Douglas V.Hall, “Microprocessors and Interfacing”, 2nd edition, Tata McGraw Hill, 2017.
+REFERENCE BOOKS: 
+1. William Stallings, “Computer Organization  & Architecture:  Designing for Performance”, 11th 
+Edition, Pearson, 2019.
+2. Advanced Microprocessors and Peripherals – A. K. Ray and K.M. Bhurchandani, TMH, 2nd 
+Edition 2006. 
+SKILLS:
+ 
+
+Learn 
+diﬀ erent data 
+representations.
+ 
+
+ Design digital 
+circuitry for 
+implementing 
+diﬀ erent 
+operations.
+ 
+
+ Identify the types 
+of memories and 
+their uses.
+ 
+
+ Study various 
+data transfer 
+mechanisms in 
+digital computer 
+and I/O.
+
+Images on Page 2: 6
+  xref: 46, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 47, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 48, smask: 0, w: 475, h: 183, bpc: 8, cs: DeviceRGB
+  xref: 49, smask: 0, w: 475, h: 57, bpc: 8, cs: DeviceRGB
+  xref: 50, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 51, smask: 0, w: 151, h: 151, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 3 ===================
+VFSTR 
+82
+CSE - II Year II Semester
+25CS207 DESIGN AND ANALYSIS OF 
+ALGORITHMS
+Hours Per Week :
+L
+T
+P
+SL
+C
+2
+2
+2
+2
+4
+PREREQUISITE KNOWLEDGE: Programming for problem solving, Discrete Mathematical Structures, 
+Data Structures.
+COURSE DESCRIPTION AND OBJECTIVES:
+This course oﬀ ers the basic knowledge required to analyze the asymptotic performance of algorithms. In 
+addition, this course provides the knowledge required to solve diﬀ erent problems using suitable design 
+strategies such as the greedy method, divide and conquer, dynamic programming, backtracking and 
+branch & bound. This course helps to understand the impact of the choice of data structures and algorithm 
+design strategies on the performance. This course also provides the understanding of advanced graph 
+applications and throws light on tractable and intractable problems.
+MODULE-1
+UNIT-1 
+6L+6T+6P+6SL=24 Hours
+INTRODUCTION 
+Algorithm, Pseudo-code for expressing algorithms, Performance analysis – space and time complexity; 
+Asymptotic notation - big oh notation, Omega notation, Theta notation and little oh notation; Randomized 
+Algorithms; (T1-PP: 1-67)
+Analysis of recursive algorithms through recurrence relations- substitution method, Recursion 
+tree method, Masters Theorem. (R1-96-102, T2-53-66)
+Disjoint sets: Disjoint set operations, Union and ﬁ nd algorithms. (T1-PP: 101-111).
+UNIT-2 
+6L+6T+6P+6SL=24 Hours 
+DIVIDE & CONQUER AND GREEDY METHOD 
+Divide and Conquer: General method, Applications - Binary search, Quick sort, Merge sort and 
+Strassen’s matrix multiplication. ; (T1-PP: 127-194)
+Greedy Method: Applications - job sequencing with deadlines, Knapsack problem, Minimum cost 
+spanning trees. ; (T1-PP: 197-220).
+PRACTICES: 
+ 
+●
+Sort a given set of elements using the following methods and determine the time required to 
+sort the elements. Repeat the experiment for diﬀ erent values of n, the number of elements in 
+the list to be sorted and plot a graph of the time taken versus n inputs. The elements can be 
+read from a ﬁ  le or can be generated using the random number generator.
+ 
+a. Quick sort  
+ 
+b.  Merge sort
+ 
+●
+Search for a given set of elements using the following methods and determine the time required 
+to search the given element. Repeat the experiment for diﬀ erent values of n, the number of 
+elements in the list to be sorted and plot a graph of the time taken versus no. of elements. The 
+elements can be read from a ﬁ  le or can be generated using the random number generator.
+ 
+a. Linear Search    
+b. Binary Search
+ 
+●
+Implement the following using divide and conquer approach. To multiply two given square 
+matrices. To multiply two given square matrices using Strassen’s matrix multiplication.
+ 
+●
+Design the Algorithm to solve Job sequencing with deadlines problem and Analyze its time 
+complexity. Implement the above algorithm using Greedy method.
+Source: https://www.
+facebook.com/Design-and-
+Analysis-of-Algorithms-15
+53902878155564/
+
+Images on Page 3: 1
+  xref: 71, smask: 0, w: 261, h: 200, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 4 ===================
+VFSTR 
+83
+CSE - II Year II Semester
+ 
+●
+Design the Algorithm to solve fractional Knapsack problem using Greedy method. Analyze the 
+time complexity and implement the above algorithm.
+ 
+●
+Design the Algorithm to ﬁ nd minimum spanning tree and its cost for an undirected graph. 
+Analyze the time complexity and implement the above algorithm.
+MODULE-2
+UNIT-1 
+ 6L+6T+6SL+6P=24 Hours
+DYNAMIC PROGRAMMING AND BACKTRACKING
+Dynamic Programming: General method, Applications - optimal binary search trees, Matrix chain 
+multiplication, 0/1 knapsackproblem, Reliability Design, All pairs shortest path problem, Travelling sales 
+person problem, Longest Common Sequence Problems (T1-PP:252-300).
+UNIT-2 
+6L+6T+6SL+6P=24 Hours
+BACKTRACKING 
+Backtracking: General method, Applications - N-Queen problem, Sum of subsets problem, Graph 
+colouring and Hamiltonian cycles. (T1-PP:339-375).
+UNIT-3 
+6L+6T+6SL+6P=24 Hours
+BRANCH & BOUND AND P, NP, NP - HARD AND NP-COMPLETE 
+Branch and Bound: General method, Applications- Travelling sales person problem, 0/1 knapsack 
+problem using LC branch and bound solution and FIFO branch and bound solution. (T1-PP:379-411)
+P, NP, NP - HARD and NP-Complete: Basic Concepts - Non-Deterministic Algorithms - The Classes NP-
+Hard and NP Complete- NP Hard Problems- Clique Decision Problem-Cook’s Theorem. (T1-PP:495-518)
+PRACTICES: 
+ 
+●
+Design the Algorithm to ﬁ nd all pairs shortest path problem by using dynamic programming 
+approach. Analyze its time complexity and implement the above algorithm.
+ 
+●
+Design the Algorithm to ﬁ nd optimal binary search tree and its cost by using dynamic 
+programming approach. Analyze its time complexity and implement the above algorithm.
+ 
+●
+Design the Algorithm to ﬁ nd optimal order of matrix chain multiplication and its cost using dynamic 
+programming approach. Analyze its time complexity and implement the above algorithm.
+ 
+●
+Design the Algorithm to ﬁ nd optimal route for travelling sales person problem and its cost by 
+using dynamic Programming approach. Analyze its time complexity and implement the above 
+algorithm.
+ 
+●
+Design the Algorithm to solve N-queens problem by using backtracking approach and Analyze 
+its time complexity. Implement the above algorithm.
+ 
+●
+Design the Algorithm to solve sum of subsets problem using backtracking approach and Analyze 
+its time complexity. Implement the above algorithm.
+ 
+●
+Design the Algorithm to solve 0/1 Knapsack problem using Branch and Bound method. Analyze 
+the time complexity and Implement the above algorithm.
+SKILLS:
+ 
+
+ Analyze the 
+given algorithm 
+concerning 
+space and time 
+complexities and 
+compare it with 
+other algorithms.
+ 
+
+ Develop 
+algorithms for 
+solving problems 
+using divide 
+and conquer, 
+greedy, dynamic 
+programming, 
+backtracking and 
+branch & bound 
+techniques.
+ 
+
+ Application of 
+existing design 
+strategies to 
+solve real-world 
+problems.
+
+Images on Page 4: 0
+
+=================== PAGE 5 ===================
+VFSTR 
+84
+CSE - II Year II Semester
+COURSE OUTCOMES: 
+Upon successful completion of this course, students will have the ability to:
+CO 
+No.
+Course Outcomes
+Blooms 
+Level
+Mapping 
+with POs
+1
+Analyze the eﬃ  ciency of a given algorithm using 
+time and space complexity theory. Understanding 
+algorithmic  design  strategy  like divide and conquer 
+approach.
+Analyze
+1, 2, 11
+2
+Apply greedy algorithm Strategy for suit able problems 
+and argue the correctness of such algorithms with 
+respect to the global optimization.
+Apply
+1, 2,3, 5, 11
+3
+Apply the dynamic programming paradigm and identify 
+the kind of problem best suited to solve using dynamic 
+programming.
+Apply
+1, 2, 3, 5, 11
+4
+Compare and contrast the design principles of branch 
+and bound with backtracking strategy.
+Apply
+1, 2,3,5, 11
+5
+Investigate computational complexity of diﬀ erent class 
+of problems.
+Analyze
+1, 2,4,11
+MAPPING OF SUSTAINABLE DEVELOPMENT GOALS (SDGS): 
+TEXT BOOKS:
+1. Ellis Horowitz,SatrajSahni and Rajasekharan,“Fundamentalsof Computer Algorithms”, 2nd 
+Edition, Galgotia publications, 2006.
+2. Thomas H. Coremen, Charles E. Leiserson and Ronald L. Rivest, “Introduction to Algorithm”, 
+2nd Edition, MIT press Ltd., 2014.
+REFERENCE BOOKS:
+1. Anony Levitin, “Introduction to Design and Analysis of Algorithms”, 3rd Edition, Pearson 
+Education, 2016.
+2. Donald E. Knuth, “The Art of Computer Programming”, 2nd Edition, Addison Wesley Publishing 
+Company, 1998.
+3. Ronald L. Graham, Donald E. Knuth and Oren Patashnik, “Concrete Mathematics”, 2nd Edition, 
+Addison wesley Publishing Company,1998.
+4. Dasgupta, Papadimitriou and Vazirani, “Algorithms”, 1st Edition, McGraw-Hill publishers, 2008.
+5. Weiss, “Data Structures and Algorithm Analysis”, 1st Edition, Addison-Wesley Publishing 
+Company, 2016.
+
+Images on Page 5: 6
+  xref: 46, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 47, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 78, smask: 0, w: 475, h: 183, bpc: 8, cs: DeviceRGB
+  xref: 79, smask: 0, w: 475, h: 58, bpc: 8, cs: DeviceRGB
+  xref: 50, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 80, smask: 0, w: 162, h: 162, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 6 ===================
+VFSTR 
+85
+CSE - II Year II Semester
+25CS208 OPERATING SYSTEMS
+Hours Per Week :
+L
+T
+P
+SL
+C
+2
+0
+2
+2
+3
+PREREQUISITE KNOWLEDGE: Knowledge of computers fundamentals, Computer organization & 
+Digital logic and its design.
+COURSE DESCRIPTION AND OBJECTIVES:
+This course aims at concepts and principles of Operating Systems, its overall responsibility in acting as 
+an interface between the system’s hardware components and the user. Further, it also helps students to 
+understand the diﬀ erent scheduling policies, process synchronization mechanisms, deadlock handling 
+mechanisms and memory management techniques.
+MODULE-1
+UNIT-1 
+6L+0T+6P+6SL=18 Hours
+LINUX FILE SYSTEM    
+Introduction to LINUX File System: The LINUX ﬁ le System, File System Hierarchy, File system 
+Commands, File Attributes, File Permissions.
+Basic commands: cal, date, echo, bc, script, passwd, who, uname, tty, stty, pwd, cd, mkdir, rmdir, ls, 
+cat, cp, rm, mv, more, ﬁ le, wc, od, chmod, vi. (T1, Pg. No: 45 - 78)
+Filters: cmp, comm, diﬀ  , head, tail, ﬁ nd, cut, paste, sort, uniq. (T1, Pg. No: 95 - 96)
+Regular Expressions: grep, egrep, fgrep, Sed- line addressing, context addressing, text editing, 
+substitution. (R4, Pg. No: 354 – 356, 409)
+Shell Script: Creating shell script, Shell Input, Shell Output, Basic operators, Conditional and Iterative 
+statements. (R4, Pg. No: 547 – 567);
+UNIT-2 
+6L+0T+6P+6SL=18 Hours
+PROCESS SCHEDULING
+Introduction to Operating System: What Operating System do; Operating System Structure; (T2, 
+Pg. No: 03) Operating System Operations: Process Management, Memory Management, Storage 
+Management. (T2, Pg. No: 18 – 29)
+System Security: Security Problem, Program Threats, System and Network Threats, User Authentication. 
+(T2, Pg. No: 621 – 650)
+Process concept-overview, Process Scheduling, Operations on Process; Inter Process Communication; 
+(T2, Pg. No: 101 – 123)
+Process (CPU) Scheduling-Scheduling Criteria, Scheduling Algorithms; Multiple-Processor scheduling; 
+(T2, Pg. No: 183 – 205).
+PRACTICES:
+ 
+●
+Use the cat command to create a ﬁ  le containing the following data. Call it mytable.txt use tabs 
+to separate the ﬁ elds.
+ 
+1425 ravi 15.65
+ 
+4320 ramu 26.27
+ 
+6830 sita 36.15
+ 
+1450 raju 21.86
+Source: https://
+www.123rf.com/stock-
+photo/operating_system.
+html
+
+Images on Page 6: 1
+  xref: 84, smask: 0, w: 230, h: 200, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 7 ===================
+VFSTR 
+86
+CSE - II Year II Semester
+ 
+a. Use the cat command to display the ﬁ  le, mytable.txt.
+ 
+b. Use the vi command to correct any errors in the ﬁ  le, mytable.txt.
+ 
+c. Use the sort command to sort the ﬁ  le mytable.txt according to the ﬁ rst ﬁ eld.
+ 
+d. Call the sorted ﬁ  lemytable.txt (same name)
+ 
+e. Print the ﬁ  lemytable.txt.
+ 
+f. Use the cut &paste commands to swap ﬁ elds 2and 3mytable.Call itmytable.txt (same name)
+ 
+g. Print the new ﬁ  le, mytable.txt.
+ 
+●
+Write a shell script that takes a command–line argument and reports on whether it is directory, 
+a ﬁ le, or something else.
+ 
+●
+Write a shell script that accepts one or more ﬁ le name as arguments and converts all of them 
+to uppercase, provided they exist in the current directory.
+ 
+●
+Write a shell script that displays a list of all the ﬁ les in the current directory to which the user 
+has read, write and execute permissions.
+ 
+●
+Write a shell script that computes the total and average marks of a student according to the 
+following;
+ 
+• If average marks ≥ 69 then result is -Distinction.
+ 
+• If average marks ≥ 59 and ≤ 70 then result is – First Class.
+ 
+• If average marks ≥ 49 and ≤ 60 then result is – Second Class
+ 
+• If average marks ≤50 then result is -Pass.
+ 
+• Note that any subject marks ≤ 40 then result is -Fail.
+ 
+• Accept student name and six subject marks through the keyboard.
+ 
+●
+Write an interactive ﬁ  le-handling shell program. Let it oﬀ er the user the choice of copying, 
+removing, renaming, or linking ﬁ les. Once the user has made a choice, have the program ask 
+the user for the necessary information, such as the ﬁ  le name, new name and so on.
+ 
+●
+Write a shell script, which receives two ﬁ le names as arguments. It should check whether the 
+two ﬁ le contents are same or not. If they are same then second ﬁ  le should be deleted.
+ 
+●
+Write a shell script that accepts a ﬁ le name starting and ending line numbers as arguments 
+and displays all the lines between the given line numbers.
+ 
+●
+Write a shell script that deletes all lines containing a speciﬁ ed word in one or more ﬁ les supplied 
+as arguments to it.
+ 
+●
+Write a shell script to biggest among three numbers.
+ 
+●
+Write a shell script to ﬁ nd whether the entered number is prime or not.
+ 
+●
+Write a shell script to ﬁ nd the whether the entered number is Armstrong or not.
+ 
+●
+Write a shell script to ﬁ nd the factorial of the given number.
+ 
+●
+Implementation of new process creation and its communications.
+ 
+●
+Implement of thread creation and deletion.
+ 
+●
+Implementation of FCFS scheduling.
+ 
+●
+Implementation of SJF and RR Scheduling.
+MODULE-2
+UNIT-1 
+6L+0T+6P+6SL=18 Hours
+PROCESS SYNCHRONIZATION & DEADLOCKS 
+Process Synchronization: The critical-section problem; Peterson’s solution; Synchronization hardware; 
+Semaphores; Classical problems of synchronization: Producer-Consumer Problem, Readers-Writers 
+Problem, Dining Philosophers Problem, Monitors. (T2, Pg. No: 225 – 252).
+DEADLOCKS 
+Deadlocks: Deadlock characterization; Methods of handling deadlocks; Deadlock prevention; Deadlock 
+avoidance; Deadlock detection and recovery. (T2, Pg. No: 285 – 305).
+SKILLS:
+ 
+
+Manage open-
+source operating 
+systems like 
+Ubuntu, Fedora 
+etc.
+ 
+
+ Know the 
+concepts of 
+Processes 
+scheduling and 
+File Systems.
+ 
+
+ Identiﬁ cation of 
+diﬀ erent disk 
+scheduling 
+methodologies.
+
+Images on Page 7: 0
+
+=================== PAGE 8 ===================
+VFSTR 
+87
+CSE - II Year II Semester
+UNIT-2 
+6L+0T+6P+6SL=18 Hours
+MEMORY MANAGEMENT 
+Memory Management: Basic concept to memory management, Swapping, Contiguous Memory 
+Allocation, Paging, Structure of the Page Table, Segmentation. (T2, Pg. No: 315 – 345)
+Virtual Memory Management: Demand Paging, Page Replacement: Optimal, First in First Out (FIFO), 
+Second Chance (SC), Not recently used (NRU), Least Recently used (LRU), Allocation of Frames. (T2, 
+Pg. No: 357 – 385).
+UNIT-3 
+6L+0T+6P+6SL=18 Hours
+SECONDARY STORAGE STRUCTURE 
+Secondary Storage Structure: Over view of mass-storage structure, Directory & Disk Structure, RAID 
+Structure, disk scheduling; (T2, Pg. No: 505 – 532)
+File System Interface - File concept, File-system structure, Allocation Methods, Access Methods, File-
+System Mounting, File Sharing, Protection, Free Space Management. (T2, Pg. No: 461 – 482).
+PRACTICES:
+ 
+●
+Implementation of producer consumer problem.
+ 
+●
+Implementation of Banker’s algorithm for Dead lock avoidance.
+ 
+●
+Assume that you have a page-reference string for a process with m frames (initially all empty). 
+The page-reference string has length p, and n distinct page numbers occur in it.
+ 
+a) What is a lower bound on the number of page faults?
+ 
+b) What is an upper bound on the number of page faults?
+ 
+●
+Consider the following page-replacement algorithms. Rank these algorithms on a ﬁ ve-point 
+scale from “bad” to “perfect” according to their page-fault rate. Separate those algorithms that 
+suﬀ er from Belady’s anomaly from those that do not.
+ 
+a) LRU replaceme nt. b) FIF O rep lacemen t. c) Opt imal repla cement. 
+d) Second-chance replacement.
+ 
+●
+Develop the program to ﬁ nd the total no. of page faults would occur for the following replacement 
+algorithms, assuming one, two, three, four, ﬁ ve, six, and seven frames for the gives reference 
+string? 
+ 
+Page reference string: 1, 2, 3, 4,2, 1, 5, 6, 2, 1, 2, 3,7, 6, 3, 2, 1, 2, 3, 6.
+ 
+Remember that all frames are initially empty, so your ﬁ rst unique pages will cost one fault each.
+ 
+● LRU replacement.
+ 
+● FIFO replacement.
+ 
+● Optimal replacement.
+ 
+●
+What is the minimum number of page faults for an optimal page replacement strategy for The 
+reference string 1, 2, 3,4, 5, 3, 4, 1, 6,7, 8, 7, 8, 9, 7, 8,9, 5, 4, 5,4, 2. with four page frames?
+ 
+●
+Consider a demand-paged computer system where the degree of multiprogramming is currently 
+ﬁ xed at four. The system was recently measured to determine utilization of the CPU and the 
+paging disk. Three alternative results are shown below. For each case, what is happening?
+ 
+a) Can the degree of multiprogramming be increased to increase the CPU utilization? Is the 
+paging helping?
+ 
+b) CPU utilization 13 percent; disk utilization 97 percent.
+ 
+c) CPU utilization 87percent; disk utilization 3 percent.
+ 
+d) CPU utilization 13 percent; disk utilization 3 percent.
+ 
+●
+Implementation of Disk scheduling algorithm–FCFS.
+ 
+●
+Implementation of Disk scheduling algorithm–SSTF and SCAN.
+
+Images on Page 8: 0
+
+=================== PAGE 9 ===================
+VFSTR 
+88
+CSE - II Year II Semester
+COURSE OUTCOMES: 
+Upon successful completion of this course, students will have the ability to:
+CO 
+No.
+Course Outcomes
+Blooms Level
+Mapping 
+with POs
+1
+Apply regular expressions and LNIX text processing 
+tools to search, ﬁ lter, manipulate text data and develop 
+the shell programming. 
+Apply
+1, 2,
+2
+Apply the concepts of process scheduling algorithms 
+and process synchronization techniques to derive the 
+eﬃ  ciency of resource utilization.
+Apply
+1, 2, 3,
+3
+Analyze process synchronization issues and evaluate 
+deadlock conditions to identify and recommend 
+appropriate solutions for safe process execution.
+Analyze
+1,2,4,
+4
+Apply memory and virtual memory management 
+techniques such as paging, segmentation, and page 
+replacement algorithms to manage and optimize system 
+memory usage.
+Apply
+3,5,7,9
+5
+Analyze secondary storage structures and ﬁ le system 
+designs to evaluate the performance and eﬃ  ciency of 
+disk scheduling algorithms, directory organization, and 
+space management techniques.
+Analyze
+2,4,7,11
+6
+Evaluate the performance of diﬀ erent memory allocation 
+and replacement algorithms under varying workloads 
+and system conditions.
+Evaluate
+2,4,6,7,11
+MAPPING OF SUSTAINABLE DEVELOPMENT GOALS (SDGS): 
+TEXT BOOKS:
+1. Sumitabha Das, Unix concepts and applications , TMH Publications, 4th Edition, July 2017.
+2.  Abraham Silberschatz, Peter Baer Galvin and Greg Gagne, “Operating System Concepts”, 9th 
+Edition, John Wiley & SonsInc, 2013.
+REFERENCE BOOKS:
+1. Richard. Stevens and Stephen A Rago, “Advanced Programming in the Unix Environment”,3rd 
+Edition, Addison-Wesley, 2013.
+2.  William Stallings, “Operating Systems-Internals and Design principles” PHI, 7th Edition, 2012.
+3.  Gary J. Nutt. Addison-Wesley, “Operating Systems: A Modern Perspective”, 2nd Edition, 2001.
+4.  B.A. Forouzan & R.F.Giberg, - Unix and shell Programming , Thomson, 1st Edition, New 
+Delhi,2003.
+
+Images on Page 9: 12
+  xref: 94, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 95, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 96, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 97, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 98, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 99, smask: 0, w: 604, h: 69, bpc: 8, cs: DeviceRGB
+  xref: 100, smask: 0, w: 162, h: 162, bpc: 8, cs: DeviceRGB
+  xref: 101, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 78, smask: 0, w: 475, h: 183, bpc: 8, cs: DeviceRGB
+  xref: 79, smask: 0, w: 475, h: 58, bpc: 8, cs: DeviceRGB
+  xref: 102, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 103, smask: 0, w: 151, h: 151, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 10 ===================
+VFSTR 
+89
+CSE - II Year II Semester
+25CS209 COMPUTER NETWORKS
+Hours Per Week :
+L
+T
+P
+SL
+C
+3
+0
+2
+3
+4
+PREREQUISITE KNOWLEDGE: Java Programming, UNIX Commands.
+COURSE DESCRIPTION AND OBJECTIVES:
+The goal of this course is introduces the fundamental concepts, architecture, protocols, and technologies 
+used in modern computer networks. It provides a layered approach to understanding how data is 
+transmitted across networks, focusing on the OSI and TCP/IP models, data communication, routing, 
+switching, network security, and wireless networking. Emphasis is placed on both theoretical foundations 
+and practical implementations, enabling students to analyze, conﬁ gure, and troubleshoot network 
+systems eﬀ ectively.
+MODULE-1
+UNIT-1 
+9L+0T+6P+9SL=24 Hours
+INTRODUCTION TO COMPUTER NETWORKS AND INTERNET 
+Understanding of Networks,Network Hardware,Network software,OSI,TCP/IP ReferenceModels, 
+Topology, Example Networks:ARPANET,INTERNET.
+PHYSICAL LAYER-Guided Transmission Media:Twisted Pair,Coaxial Cable,Fiberoptics, Wireess 
+transmission. 
+UNIT-2 
+9L+0T+6P+9SL=24 Hours
+DATALINK LAYER AND LOCAL AREA NETWORKS 
+Introduction to Datalink layer Services,Error Detection and Error Correction Techniques, Elementary 
+Data Link Protocols,sliding window Protocols.
+THE MEDIUM ACCESS SUBLAYER - Channel Allocation Problem,Multiple Access Protocols, 
+Ethernet,Switching,WirelessLAN,Bluetooth.
+PRACTICES:
+ 
+●
+Study of Network devices in detail.
+ 
+●
+Repeater
+ 
+●
+Hub
+ 
+●
+Switch
+ 
+●
+Bridge
+ 
+●
+Gateway
+ 
+●
+Router
+ 
+●
+Implement the data link layer framing methods such as character count,character stuﬃ  ng,bit 
+stuﬃ  ng.
+ 
+●
+Implement on a data set of characters the three CRC polynomial CRC 12, CRC 16 ,CRC CCIP
+ 
+●
+Find all the IP addresseson your network using Unicast,Multicast,Broadcast on your Network.
+ 
+●
+Apply the commands such as ping,Tracert, ipconﬁ g,Pathping,telnet,FTP,ARP,Hostname,Nbtstat,
+      Netdiag and Nslookup to solve various problems.
+Source: https://
+snabaynetworking.
+com/what-is-computer-
+network-and-its-types/
+
+Images on Page 10: 1
+  xref: 107, smask: 0, w: 260, h: 200, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 11 ===================
+VFSTR 
+90
+CSE - II Year II Semester
+MODULE-2
+UNIT-1 
+9L+0T+6P+9SL=24 Hours
+NETWORK LAYER 
+ Introduction to Forwarding and Routing,Network service Models,Routing Algorithms,Congestion Control 
+Algorithms,Internetworking,the network layer in the internet(IPV4 and IPV6) 
+UNIT-2 
+9L+0T+6P+9SL=24 Hours
+TRANSPORT LAYER
+Transport Layer Service,Elements of Transport Protocol,Multiplexing and demultiplexing Connection 
+oriented Tansport(TCP),connection less Transport(UDP)  
+ 
+UNIT-3 
+9L+0T+6P+9SL=24 Hours
+APPLICATION LAYER
+DNS, E-Mail, World Wide Web:Architectural Overview,HTTP,SNMP,FTP,SMTP,TELNET.
+PRACTICES:
+ 
+●
+Implement Dijsktra’s algorithm to complete the shortest path through a graph.
+ 
+●
+Simulate the Distance Vector Routing Algorithm for a network of 4 nodes with given initial 
+distance tables and display how the distance tables update after each iteration.
+ 
+●
+Take an example subnet of hosts. Obtain broadcast tree for it.
+ 
+●
+Use Packet tracer software to bulid network topology and conﬁ gure using Distance vector 
+routing and link state routing protocols
+ 
+●
+Study of diﬀ erent types of Network cables(copper and Fiber) and Prepare cables(Straight and 
+Cross) to connect two or more systems.
+ 
+i) Use a crimping tool to connect jacks.
+ 
+ii) Use a LAN tester to connect  the cables
+ 
+iii) Install and conﬁ gure Network devices:HUB,Switch,Routers(Consider both manageable and 
+non-manageableswitches).Perform logical conﬁ guration of the system and set the bandwidth 
+of diﬀ erent ports. 
+ 
+iv) Install and conﬁ gure Wired and Wireless NIC and transfer ﬁ les between systems in wired 
+and wireless LAN.consider both  adhoc- and infrastructure modes of operation
+SKILLS:
+ 
+
+Investigate 
+syntax and 
+semantics of 
+a regular and 
+context free 
+languages.
+ 
+
+Develop 
+the problem 
+understanding 
+solving ability.
+ 
+
+ Design 
+optimized 
+solutions for a 
+language.
+
+Images on Page 11: 0
+
+=================== PAGE 12 ===================
+VFSTR 
+91
+CSE - II Year II Semester
+COURSE OUTCOMES: 
+Upon successful completion of this course, students will have the ability to:
+CO 
+No.
+Course Outcomes
+Blooms 
+Level
+Mapping 
+with POs
+1
+Understand the principles and models of computer 
+networks, including OSI and TCP/IP layers.
+Analyze
+1,2,5,6,
+2
+Evaluate diﬀ erent physical layer media and switching 
+methods.
+Evaluation
+1,2,5,6,
+3
+Demonstrate various protocols involved in datalink 
+layer operations.
+Apply, Ana-
+lyze
+1,2,5,
+4
+Analyze various design issues,Protocols and 
+functionalities of network layer.
+Apply
+1,2,
+5
+Understanding transport layer functionalities and 
+applying multuplexing techniques.
+Apply
+1,2,5,6,
+6
+Apply different protocols to perform end-to-end 
+delivery and interaction with users.
+Apply
+1,2,3,5,6,
+MAPPING OF SUSTAINABLE DEVELOPMENT GOALS (SDGS): 
+TEXT BOOK:
+1. S. S. Sastry, “Introductory Methods of Numerical Analysis”, 5th ed., PHI Learning, 2012.
+2. M. K. Jain, “Numerical Methods for Scientiﬁ c and Engineering Computation”, New Age 
+International, 8th Ed., 2022.
+REFERENCE BOOKS:
+1. P. Kandasamy, “Numerical Methods”, S. Chand, 2nd ed., 2015.
+2. C. Ray Wylie, Louis C. Barrett, “Advanced Engineering Mathematics”, 6th Edition, McGraw-Hill 
+Book Co., New York, 1995.
+3. Gupta C.B., Singh S.R., and Mukesh Kumar, “Engineering Mathematics for Semester I & II”, 
+McGraw Hill Education (India) Pvt. Ltd., 2015.
+4. H. K. Das, “Advanced Engineering Mathematics”, S. CHAND & COMPANY PVT. LTD, 2008.
+
+Images on Page 12: 10
+  xref: 114, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 115, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 116, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 117, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 118, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 119, smask: 0, w: 604, h: 68, bpc: 8, cs: DeviceRGB
+  xref: 120, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 48, smask: 0, w: 475, h: 183, bpc: 8, cs: DeviceRGB
+  xref: 49, smask: 0, w: 475, h: 57, bpc: 8, cs: DeviceRGB
+  xref: 102, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 13 ===================
+VFSTR 
+92
+CSE - II Year II Semester
+25CS210 DESIGN THINKING AND 
+ENGINEERING ORIENTATION
+Hours Per Week :
+PREREQUISITE KNOWLEDGE: The course requires a basic understanding of Computer Science 
+Engineering concepts, problem-solving techniques, and an interest in user-centric design and system 
+development. Familiarity with computational thinking and collaborative work is also beneﬁ cial.
+COURSE DESCRIPTION AND OBJECTIVES:
+This course introduces the principles of design thinking as a systematic framework for problem-solving 
+and innovation in engineering, emphasizing user-centric solutions. It provides hands-on experience 
+in designing and prototyping software systems and fosters interdisciplinary collaboration. The course 
+explores computational thinking, system design, and emerging trends like AI, IoT, and big data, with a 
+focus on ethics and sustainability.
+The primary objective of this course is to introduce students to the principles of design thinking as a 
+structured framework for addressing complex engineering challenges. By focusing on user-centric 
+methodologies, students will learn to empathize with end-users, deﬁ ne problems accurately, and 
+generate innovative solutions. This course aims to enhance creativity, critical thinking, and collaborative 
+problem-solving skills speciﬁ c to software and system design. Students will explore the role of computer 
+science engineering in multidisciplinary solutions and its applications in various ﬁ elds like AI, IoT, and 
+big data. Additionally, the course emphasizes the importance of hands-on learning through prototyping, 
+iterative testing, and user feedback. It also seeks to instill an understanding of ethical considerations, 
+sustainability, and inclusivity in technology design and engineering practices.
+MODULE-1
+UNIT-1 
+0L+6T+0P+0SL=6 Hours
+DESIGN THINKING PRINCIPLES AND USER-CENTRIC DESIGN 
+Getting Under Your Skin, How Design Thinking Is About More Than Style –t1- Page 19,Converting Need 
+into Demand, Putting People First – t1-Page 45,A Mental Matrix, “These People Have No Process!” – t1-
+Page 69,Building to Think, The Power of Prototyping – t-Page 93,Returning to the Surface, The Design 
+of Experiences – t-Page 115,Spreading the Message, The Importance of Storytelling – t1 -Page 135. 
+UNIT-2 
+0L+6T+0P+0SL=6 Hours 
+Design Thinking Meets the Corporation, Teaching to Fish – t1-Page 161,The New Social Contract, We’re 
+All in This Together – t1-Page 183,Design Activism, Inspiring Solutions with Global Potential –t1- Page 
+209,Designing Tomorrow—Today – t1-Page 233,Redesigning Design – t1-Page 249.
+PRACTICES: 
+ 
+●
+Research thoroughly to understand user needs and challenges.
+ 
+●
+Use empathy to create user personas and map user journeys.
+ 
+●
+Follow the design thinking process: Empathize, Deﬁ ne, Ideate, Prototype, and Test.
+ 
+●
+Encourage collaborative brainstorming and test prototypes with users.
+ 
+●
+Prioritize usability, accessibility, and inclusivity in all designs.
+Source: https://www.
+teachengineering.org/activities/
+view/ced-2680-engineering-
+design-process-thinking.
+L
+T
+P
+SL
+C
+0
+0         2
+0
+1
+
+Images on Page 13: 1
+  xref: 124, smask: 0, w: 301, h: 301, bpc: 8, cs: DeviceRGB
+
+=================== PAGE 14 ===================
+VFSTR 
+93
+CSE - II Year II Semester
+MODULE-2
+UNIT-1 
+0L+6T+0P+0SL=6 Hours
+ENGINEERING ORIENTATION AND EMERGING TRENDS 
+Introduction – t2-Page 7, You Can Do It! – t2-Page 8, What is “Success”? – t2-Page 11, Keys to Success 
+in Engineering Study – t2-Page 18, Models for Viewing Your Education –t2- Page 24,Structure Your 
+Life Situation –t2- Page 28. 
+UNIT-2 
+0L+6T+0P+0SL=6 Hours
+Introduction – t2- Page 37,What is Engineering? – t2- Page 38. The Engineering Design Process – 
+t2- Page 40,Case Study: Human-Powered Helicopter – t2- Page 43,Rewards and Opportunities of an 
+Engineering Career – t2- Page 51,Engineering Disciplines – t2- Page 55,Engineering Job Functions 
+– t2- Page 59,Employment Opportunities – t2- Page 63,Important Fields for the Future – t2- Page 
+67,Sustainability – t2- Page 71,Engineering as a Profession – t2- Page 75 
+ 
+UNIT-3 
+0L+6T+0P+0SL=6 Hours
+Introduction – t2- Page 272,Organization of Engineering Education – t2-Page 273,The Role of Community 
+Colleges in Engineering Education – t2- Page 275, The Engineering Education System – t2- Page 278, 
+Academic Advising – Page 280, Academic Regulations – t2- Page 283,Engineering Ethics – t2- Page 
+291, Student Conduct – t2- Page 292,Opportunities for Graduate Education in Engineering – Page 
+293,Engineering as Preparation for Further Education – t2- Page 294.
+PRACTICES:
+ 
+●
+Apply computational thinking to design scalable, secure, and eﬃ  cient systems.
+ 
+●
+Focus on ethical practices like data privacy, AI fairness, and inclusivity.
+ 
+●
+Stay updated with advancements in AI, IoT, and big data, applying user-centric design 
+principles.
+ 
+●
+Use eﬀ ective data visualization techniques to present insights clearly.
+ 
+●
+Continuously reﬁ ne designs based on user feedback and real-world needs.
+COURSE OUTCOMES: 
+Upon successful completion of this course, students will have the ability to:
+CO 
+No.
+Course Outcomes
+Blooms Level
+Mapping 
+with POs
+1
+Apply design-thinking principles to user-centric 
+software and system development.
+Apply
+1,2,5
+2
+Use prototyping tools and frameworks to develop 
+and test technology solutions.
+Create 
+3,4,6
+3
+Understand the role of empathy, ethics, and 
+sustainability in CSE design.
+Analyze
+2,4,7
+4
+Collaborate eﬀ ectively to solve real-world problems 
+using iterative methods..
+Analyze 
+1,5,6
+5
+Apply engineering principles and design thinking to 
+emerging trends like AI, IoT.
+Apply
+3,6,7
+SKILLS:
+ 
+
+ Critical and 
+creative thinking 
+for problem-
+solving and 
+innovation.
+ 
+
+ Empathy to 
+understand 
+user needs and 
+challenges.
+ 
+
+ Collaboration 
+skills to work 
+eﬀ ectively in 
+teams.
+ 
+
+ Basic technical 
+knowledge in 
+computational 
+thinking and 
+system design.
+ 
+
+ Prototyping 
+and testing to 
+develop and 
+reﬁ ne solutions.
+
+Images on Page 14: 0
+
+=================== PAGE 15 ===================
+VFSTR 
+94
+CSE - II Year II Semester
+MAPPING OF SUSTAINABLE DEVELOPMENT GOALS (SDGS): 
+TEXT BOOK:
+1. Brown, Tim. “Change by Design: How Design Thinking Creates New Alternatives for Business 
+and Society”, Revised Edition, Harper Business, 2009.
+2. Studying Engineering: A Road Map to a Rewarding Career by Raymond B. Landis, Steﬀ en 
+Peuker, and Jennifer Mott Edition: 5th (2023).
+REFERENCE BOOKS:
+1. Gero, John S. & Maher, Mary Lou. “Designing Design: How Design Thinking Transforms the 
+Practice of Engineering”, First Edition, Springer, 2019.
+2. Brown, Tim. “Design Thinking: A Method for Creative Problem Solving”, First Edition, Harper 
+Design, 2015.
+ 
+
+Images on Page 15: 12
+  xref: 135, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 136, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 137, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 138, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 139, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 140, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 141, smask: 0, w: 147, h: 147, bpc: 8, cs: DeviceRGB
+  xref: 142, smask: 0, w: 604, h: 108, bpc: 8, cs: DeviceRGB
+  xref: 99, smask: 0, w: 604, h: 69, bpc: 8, cs: DeviceRGB
+  xref: 143, smask: 0, w: 226, h: 226, bpc: 8, cs: DeviceRGB
+  xref: 144, smask: 0, w: 475, h: 183, bpc: 8, cs: DeviceRGB
+  xref: 145, smask: 0, w: 475, h: 57, bpc: 8, cs: DeviceRGB
